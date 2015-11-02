@@ -2,19 +2,33 @@
  * load Balancer Module.
  */
 
-
 var fs = require("fs");
 var conf = (JSON.parse(fs.readFileSync("./config/conf.json", "utf8")));
 var loadBal=conf.loadBalanceAlgo;
 var algo = require("../loadbalancers/"+loadBal);
-
 
 exports.ping = function(req, res){
   res.send('Up and Running');
 };
 
 exports.resourceRequest = function(req, res){
-	  if(conf.role == "loadbalancer")
+		
+	if (req.body.hasOwnProperty('algo'))
+	{
+		console.log(" ********algo is : *********" + req.param('algo'));
+	}
+	
+	
+	/** for(var i = 0 ; i< conf.loadBalanceAlgo.AlgoType.length ; i++)
+	 {
+	   if ( (req.param('algo')) == conf.loadBalanceAlgo.AlgoType[i]) 
+	   {
+	   loadBal = req.param('algo');
+	   break;
+	   }
+	 }**/
+	
+		if(conf.role == "loadbalancer")
 		  {
 		  	algo.allocateServer(function(allocatedServer,err){
 		  		if(err)
