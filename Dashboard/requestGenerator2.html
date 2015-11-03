@@ -225,26 +225,29 @@
 <!--#  Request type selections added by Kokil --> 
  <label for="Static" style="margin-left:20%" font="Helvetica Neue" font-size="3">Pick an algorithm :</label>
 <div class="bs-example">
-     <div class="btn-group" style="margin-left:20%" data-toggle="buttons">
+     <div  class="btn-group" style="margin-left:20%" data-toggle="buttons">
         <label class="btn btn-primary">
-            <input type="radio" name="options" id="antcolony">Ant Colony
+            <input type="radio" name="options" id="antcolony" value = "AntColony">Ant Colony
         </label>
         <label class="btn btn-primary">
-            <input type="radio" name="options" id="honeybee"> Honey bee
+            <input type="radio" name="options" id="honeybee" value = "HoneyBee"> Honey bee
         </label>
         <label class="btn btn-primary">
-            <input type="radio" name="options" id="RoundRobin"> Round Robin
+            <input type="radio" name="options" id="RoundRobin" value = "RoundRobin"> Round Robin
         </label>
          <label class="btn btn-primary">
-            <input type="radio" name="options" id="Random"> Random
+            <input type="radio" name="options" id="Random" value = "Random"> Random
         </label>
     </div>
+   
 </div>
 <br>
 
 
  <button type="button" style="margin-left:30%" value="Submit" onclick="sendRequests()">Submit</button>
-    </form>          
+    </form> 
+    
+       
 
   </div>
 	<!-- start: JavaScript-->
@@ -368,7 +371,8 @@ function sendRequests()
   else if((document.getElementById('RoundRobin')).checked )
   {
 	algo =  document.getElementById('RoundRobin').value; 
-   }
+  }
+    
  	  
  
   //Updated by Kokil-- End
@@ -380,9 +384,10 @@ function sendRequests()
     if(rr.checked==true)
     {
       args=randomizedRequestArgs();
-    }
-    
+    } 
+   
     sendAJAXReq(args);
+   
   }
 }
 
