@@ -42,7 +42,7 @@
 		
 </head>
 
-<body>
+<body onload="initialize()">
 		<!-- start: Header -->
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -369,7 +369,168 @@
         chart3.draw(data, options);
       }
     </script>
+    
+    <!--Beginning of Script for LocalStorage-->
+    <script>
+        function initialize(){
+            
+            //Get Stored Server List
+            var storedServers = JSON.parse(localStorage.getItem("servers"));
+            
+            //Initialize Server List if not already initialized
+            if(!storedServers){
+                //Object with Server List
+                var servers = {
+                    'serverList':
+                    [
+                        {
+                            'Server Name': 'Test Server 1',
+                            'IP Address': '10.0.0.1',
+                            'Image Name': 'cirros-0.3.2x86_64-uec',
+                            'Location': 'USA',
+                            'Status': 'Active',
+                            'Date Created': '9/19/2015',
+                            'Availability': 'Available'
+                        },
+                        {
+                            'Server Name': 'Test Server 3',
+                            'IP Address': '10.0.0.2',
+                            'Image Name': 'cirros-0.3.2x86_64-uec',
+                            'Location': 'China',
+                            'Status': 'Active',
+                            'Date Created': '9/20/2015',
+                            'Availability': 'Unavailable'
+                        },
+                        {
+                            'Server Name': 'Test Server',
+                            'IP Address': '10.0.0.3',
+                            'Image Name': 'cirros-0.3.2x86_64-uec',
+                            'Location': 'India',
+                            'Status': 'Inactive',
+                            'Date Created': '9/20/2015',
+                            'Availability': 'Unavailable'
+                        },
+                        {
+                            'Server Name': 'Test Server 0',
+                            'IP Address': '10.0.0.5',
+                            'Image Name': 'cirros-0.3.2x86_64-uec',
+                            'Location': 'USA',
+                            'Status': 'Inactive',
+                            'Date Created': '9/18/2015',
+                            'Availability': 'Unavailable'
+                        },
+                        {
+                            'Server Name': 'Test Server 5',
+                            'IP Address': '10.0.0.7',
+                            'Image Name': 'cirros-0.3.2x86_64-uec',
+                            'Location': 'USA',
+                            'Status': 'Inactive',
+                            'Date Created': '9/18/2015',
+                            'Availability': 'Unavailable'
+                        }
+                    ]
+                }
+                localStorage.setItem('servers', JSON.stringify(servers));
+                storedServers = servers;
+            }//End of Server Initialization
+            
+            //Get Stored Hub List
+            var storedHubs = JSON.parse(localStorage.getItem("hubs"));
+            
+            //Initialize Hub List if not Already Initialized
+            if(!storedHubs){
+                //Object With Hub List
+                var hubs = {
+                    'hubList':
+                    [
+                        {
+                            'ID': 1,
+                            'Hub Name': 'Hub',
+                            'IP Address': '10.0.0.30',
+                            'Max Devices': 10,
+                            'Availability': 'Unavailable',
+                            'Assigned Server': storedServers.serverList[0]["Server Name"]
+                        },
+                        {
+                            'ID': 2,
+                            'Hub Name': 'New Hub',
+                            'IP Address': '10.0.0.32',
+                            'Max Devices': 5,
+                            'Availability': 'Available',
+                            'Assigned Server': 'None'
+                        },
+                        {
+                            'ID': 3,
+                            'Hub Name': 'Hub 1',
+                            'IP Address': '10.0.0.33',
+                            'Max Devices': 7,
+                            'Availability': 'Available',
+                            'Assigned Server': 'None'
+                        }
+                    ]
+                }
+                localStorage.setItem('hubs', JSON.stringify(hubs));
+                storedHubs = hubs;
+            }//End of Hub Initialization
+            
+            //Get Stored Emulator List
+            var storedEmulators = JSON.parse(localStorage.getItem("emulators"));
+            
+            //Initialize Emulator List if not Already Initialized
+            if(!storedEmulators){
+                //Object With Emulator List
+                var emulators = {
+                    'emulatorList':
+                    [
+                        {
+                            'Emulator Name': 'Samsung Galaxy 5',
+                            'OS': 'Android',
+                            'Version': 4.4,
+                            'RAM': 512,
+                            'Status': 'Running'
+                        },
+                        {
+                            'Emulator Name': 'Nexus 5',
+                            'OS': 'Android',
+                            'Version': 5.0,
+                            'RAM': 512,
+                            'Status': 'Not Running'
+                        }
+                    ]
+                }
+                localStorage.setItem('emulators', JSON.stringify(emulators));
+                storedEmulators = emulators;
+            }//End of Emulator initialization
+            
+            //Get Stored Device List
+            var storedDevices = JSON.parse(localStorage.getItem("devices"));
+            
+            //Initialize Emulator List if not Already Initialized
+            if(!storedDevices){
+                var devices = {
+                    'deviceList':
+                    [
+                        {
+                            'Device Name':'Samsung Galaxy 5',
+                            'OS':'Android',
+                            'Version': 4.4,
+                            'RAM': 512,
+                            'Status':'Running'
+                        },
+                        {
+                            'SerialID':'Nexus 5',
+                            'OS':'Android',
+                            'Version': 5.0,
+                            'RAM': 512,
+                            'Status':'Not Running'
+                        }
+                    ]
+                }
+                localStorage.setItem('devices', JSON.stringify(devices));
+                storedDevices = devices;
+            }//End of Device Initialization
+    }
+    </script>
     <!-- end: JavaScript-->
-	
 </body>
 </html>
