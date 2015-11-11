@@ -4,8 +4,9 @@
 
 var fs = require("fs");
 var conf = (JSON.parse(fs.readFileSync("./config/conf.json", "utf8")));
-var loadBal=conf.loadBalanceAlgo;
-var algo = require("../loadbalancers/"+loadBal);
+//commented by Kokil , to pick algo from UI rather than conf file.
+//var loadBal=conf.loadBalanceAlgo;
+//var algo = require("../loadbalancers/"+loadBal);
 
 exports.ping = function(req, res){
   res.send('Up and Running');
@@ -17,6 +18,10 @@ exports.resourceRequest = function(req, res){
 	{
 		console.log(" ********algo is : *********" + req.param('algo'));
 	}
+
+	var loadBal=req.param('algo');
+	var algo = require("../loadbalancers/"+loadBal);
+	
 	
 	
 	/** for(var i = 0 ; i< conf.loadBalanceAlgo.AlgoType.length ; i++)
