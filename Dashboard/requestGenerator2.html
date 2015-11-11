@@ -227,7 +227,7 @@
 <div class="bs-example">
      <div  class="btn-group" style="margin-left:20%" data-toggle="buttons">
         <label class="btn btn-primary">
-            <input type="radio" name="options" id="antcolony" value = "AntColony">Ant Colony
+            <input type="radio" name="options" id="locationAware" value = "locationAware">Location Aware
         </label>
         <label class="btn btn-primary">
             <input type="radio" name="options" id="honeybee" value = "HoneyBee"> Honey bee
@@ -372,6 +372,10 @@ function sendRequests()
   {
 	algo =  document.getElementById('RoundRobin').value; 
   }
+  else if((document.getElementById('locationAware')).checked )
+  {
+	algo =  document.getElementById('locationAware').value; 
+  }  
     
  	  
  
