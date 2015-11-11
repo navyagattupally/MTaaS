@@ -236,7 +236,7 @@
             <input type="radio" name="options" id="RoundRobin" value = "RoundRobin"> Round Robin
         </label>
          <label class="btn btn-primary">
-            <input type="radio" name="options" id="Random" value = "Random"> Random
+            <input type="radio" name="options" id="random" value = "random"> Random
         </label>
     </div>
    
@@ -364,9 +364,9 @@ function sendRequests()
 
   
   
-    if((document.getElementById('Random')).checked) 
+    if((document.getElementById('random')).checked) 
    {
-   algo =  document.getElementById('Random').value;
+   algo =  document.getElementById('random').value;
    }
   else if((document.getElementById('RoundRobin')).checked )
   {
