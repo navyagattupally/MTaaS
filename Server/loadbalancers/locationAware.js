@@ -5,7 +5,7 @@ var closestServer=0;
 var shortestDistance=0;
 function allocateServer(callback,conf, req)
 {
-	if(req.body.hasOwnProperty('lattitude') && req.body.hasOwnProperty('longitude'))
+	if(req.body.hasOwnProperty('latitude') && req.body.hasOwnProperty('longitude'))
 	{
 		 for(node in conf.server.serverNodes)
 		  {
