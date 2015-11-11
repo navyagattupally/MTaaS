@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
@@ -44,7 +46,7 @@
 
   
 <body>
-		<!-- start: Header -->
+	<!-- start: Header -->
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container-fluid">
@@ -151,11 +153,12 @@
 			
 		<!--  </div><!--/fluid-row-->
 		
-		
-	       <div class="form ">
+		    <br>
+		    <br>
+		    <div class="form ">
            <form type="form" method="POST" action="http://localhost:3000/resourceRequest">
 
-  <select class="form" style="margin-left:20%" id='CPU' name="CPU">   
+  <select class="form"  id='CPU' name="CPU">   
                 <option>Select CPU</option>
                 <option>Single 2GHz</option>
                 <option>Single 3GHz</option>
@@ -163,7 +166,7 @@
                 <option>Dual 1.4 GHz</option>
                 <option>Quad 1.2 GHz</option>
   </select>
-   <select class="form" style="margin-left:20%" id='mobile_os' name="mobile_os">
+   <select class="form"  id='mobile_os' name="mobile_os">
                 <option>Select OS</option>
                 <option>Android 4.0.0</option>
                 <option>Android 4.0.4</option>
@@ -176,8 +179,8 @@
                 <option>Android 4.2.4</option>
                 <option>Android 4.3.4</option>
   </select>
-              
-  <select class="form" style="margin-left:20%" id='ram' name="ram">
+    <br>          
+  <select class="form"  id='ram' name="ram">
                 <option>Select RAM</option>
                 <option>256</option>
                 <option>512</option>
@@ -186,7 +189,7 @@
                 <option>4096</option>
   </select>
   
-  <select class="form" style="margin-left:20%" id='disk' name="disk">
+  <select class="form"  id='disk' name="disk">
                 <option>Select Disk</option>
                 <option>256</option>
                 <option>1024</option>
@@ -196,15 +199,15 @@
   </select>
 
 <br>
- <input type="text" style="margin-left:20%" placeholder="No.of Instances" name="quantity" id='quantity'/>
+ <input type="text"  placeholder="No.of Instances" name="quantity" id='quantity'/>
  <br>
-<input type="text" style="margin-left:20%" placeholder="Duration" name="duration" id='duration'/>
+<input type="text"  placeholder="Duration" name="duration" id='duration'/>
 <br>
-<input type="text" style="margin-left:20%" placeholder="No.of Requests" name="reqCount" id='reqCount'/>
+<input type="text"  placeholder="No.of Requests" name="reqCount" id='reqCount'/>
 <br>
 
 <div class="bs-example">
-    <div class="btn-group" style="margin-left:20%" data-toggle="buttons">
+    <div class="btn-group"  data-toggle="buttons">
         <label class="btn btn-primary">
             <input type="radio" name="options" id="Mobility"> Mobility
         </label>
@@ -217,15 +220,15 @@
     </div>
 </div>
 
-<div  font="Helvetica Neue" font-size="3" style="margin-left:20%">
+<div  font="Helvetica Neue" font-size="3" >
 <input type="checkbox"  name="randomRequest" id="randomRequest" value=""/>
 <label for="Randomize Request" font="Helvetica Neue" font-size="3">RandomizeRequest</label>
  </div>
 
 <!--#  Request type selections added by Kokil --> 
- <label for="Static" style="margin-left:20%" font="Helvetica Neue" font-size="3">Pick an algorithm :</label>
+ <label for="Static"  font="Helvetica Neue" font-size="3">Pick an algorithm :</label>
 <div class="bs-example">
-     <div  class="btn-group" style="margin-left:20%" data-toggle="buttons">
+     <div  class="btn-group"  data-toggle="buttons">
         <label class="btn btn-primary">
             <input type="radio" name="options" id="locationAware" value = "locationAware">Location Aware
         </label>
@@ -244,7 +247,7 @@
 <br>
 
 
- <button type="button" style="margin-left:30%" value="Submit" onclick="sendRequests()">Submit</button>
+ <button type="button" style="margin-left:15%" value="Submit" onclick="sendRequests()">Submit</button>
     </form> 
     
        
