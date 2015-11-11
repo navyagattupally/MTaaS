@@ -24,8 +24,8 @@ var allowCrossDomain = function(req, res, next) {
 
     next();
 }
-
-var conf = (JSON.parse(fs.readFileSync("./config/confs1.json", "utf8")));
+//update conf1 to conf by Kokil
+var conf = (JSON.parse(fs.readFileSync("./config/conf.json", "utf8")));
 
 var app = express();
 
