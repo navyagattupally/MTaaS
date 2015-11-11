@@ -14,7 +14,20 @@
                 "host": "localhost",
                 "nodeId": 2,
                 "nodeName": "two"
+            },
+             {
+                "port": 3003,
+                "host": "localhost",
+                "nodeId": 3,
+                "nodeName": "three"
+            },
+             {
+                "port": 3004,
+                "host": "localhost",
+                "nodeId": 4,
+                "nodeName": "four"
             }
+            
         ]
     },
     "loadBalancer" : {
