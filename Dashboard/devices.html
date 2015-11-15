@@ -140,7 +140,8 @@
                                       <th>Actions</th>
 								  </tr>
 							  </thead>   
-							  <tbody>
+							  <tbody id="emulatorTableBody">
+                                <!--Emulator Data now Populated From Local Storage
 								<tr>
 									<td class="center">Samsung galaxy 5</td>
 									<td class="center">Android</td>
@@ -168,8 +169,8 @@
 										<i class="halflings-icon white trash"></i> 
 									</a>
 								</td>
-                                    
-								             
+                                </tr>     
+				                End of Commenting of Emulator Table Contents-->        
 							  </tbody>
 						 </table>  
 						 <div class="pagination pagination-centered">
@@ -201,7 +202,7 @@
 						<table class="table table-striped table-bordered">
 							  <thead>
 								  <tr>
-									  <th>Serial ID</th>
+									  <th>Device Name</th>
 									  <th>OS</th>
                                       <th>Version</th>
 									  <th>RAM (MB)</th>
@@ -209,7 +210,8 @@
                                       <th>Actions</th>
 								  </tr>
 							  </thead>   
-							  <tbody>
+							  <tbody id="deviceTableBody">
+                                <!--Device Table data now Populated From Local Storage
 								<tr>
 									<td class="center">Samsung galaxy 5</td>
 									<td class="center">Android</td>
@@ -237,8 +239,8 @@
 										<i class="halflings-icon white trash"></i> 
 									</a>
 								</td>
-                                    
-								             
+                                </tr>    
+								End of Commenting of Device Table Contents-->        
 							  </tbody>
 						 </table>  
 						 <div class="pagination pagination-centered">
@@ -495,6 +497,40 @@
         var chart3 = new google.visualization.PieChart(document.getElementById('piechart3'));
         chart3.draw(data, options);
       }
+    </script>
+            
+    <!--Script for Populating Tables From Local Storage-->
+    <script>
+        $(document).ready(populate);
+        function populate(){
+            var storedEmulators = JSON.parse(localStorage.getItem("emulators"));
+            if(storedEmulators){
+                var emulatorArray = storedEmulators.emulatorList;
+                for(i=0; i<emulatorArray.length; i++){
+                    var tableRow = "<tr><td>"+emulatorArray[i]["Emulator Name"]+"</td><td>"+emulatorArray[i]["OS"]+"</td>"+
+                                    "<td>"+emulatorArray[i]["Version"]+"</td><td>"+emulatorArray[i]["RAM"]+"</td>"+
+                                    "<td>"+emulatorArray[i]["Status"]+"</td>"+
+                                "<td class='center'>"+
+									"<a class='btn btn-danger' href='#'><i class='halflings-icon white trash'></i></a>"+
+								"</td></tr>";
+                    $("#emulatorTableBody").append(tableRow);
+                }
+            }
+            
+            var storedDevices = JSON.parse(localStorage.getItem("devices"));
+            if(storedDevices){
+                var deviceArray = storedDevices.deviceList;
+                for(i=0; i<deviceArray.length; i++){
+                    var tableRow = "<tr><td>"+deviceArray[i]["Device Name"]+"</td><td>"+deviceArray[i]["OS"]+"</td>"+
+                                    "<td>"+deviceArray[i]["Version"]+"</td><td>"+deviceArray[i]["RAM"]+"</td>"+
+                                    "<td>"+deviceArray[i]["Status"]+"</td>"+
+                                "<td class='center'>"+
+									"<a class='btn btn-danger' href='#'><i class='halflings-icon white trash'></i></a>"+
+								"</td></tr>";
+                    $("#deviceTableBody").append(tableRow);
+                }
+            }
+        }
     </script>
     <!-- end: JavaScript-->
 	

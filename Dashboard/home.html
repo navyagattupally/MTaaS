@@ -393,7 +393,10 @@
                             'Location': 'USA',
                             'Status': 'Active',
                             'Date Created': '9/19/2015',
-                            'Availability': 'Available'
+                            'Availability': 'Available',
+                            'no. of CPUs': 5,
+                            'CPUs in use': 2,
+                            'RAM': 512
                         },
                         {
                             'Server Name': 'Test Server 3',
@@ -402,7 +405,10 @@
                             'Location': 'China',
                             'Status': 'Active',
                             'Date Created': '9/20/2015',
-                            'Availability': 'Unavailable'
+                            'Availability': 'Unavailable',
+                            'no. of CPUs': 3,
+                            'CPUs in use': 1,
+                            'RAM': 256
                         },
                         {
                             'Server Name': 'Test Server',
@@ -411,7 +417,10 @@
                             'Location': 'India',
                             'Status': 'Inactive',
                             'Date Created': '9/20/2015',
-                            'Availability': 'Unavailable'
+                            'Availability': 'Unavailable',
+                            'no. of CPUs': 2,
+                            'CPUs in use': 0,
+                            'RAM': 1024
                         },
                         {
                             'Server Name': 'Test Server 0',
@@ -420,7 +429,10 @@
                             'Location': 'USA',
                             'Status': 'Inactive',
                             'Date Created': '9/18/2015',
-                            'Availability': 'Unavailable'
+                            'Availability': 'Unavailable',
+                            'no. of CPUs': 5,
+                            'CPUs in use': 1,
+                            'RAM': 2048
                         },
                         {
                             'Server Name': 'Test Server 5',
@@ -429,7 +441,10 @@
                             'Location': 'USA',
                             'Status': 'Inactive',
                             'Date Created': '9/18/2015',
-                            'Availability': 'Unavailable'
+                            'Availability': 'Unavailable',
+                            'no. of CPUs': 5,
+                            'CPUs in use': 3,
+                            'RAM': 512
                         }
                     ]
                 }
@@ -469,6 +484,22 @@
                             'Max Devices': 7,
                             'Availability': 'Available',
                             'Assigned Server': 'None'
+                        },
+                        {
+                            'ID': 4,
+                            'Hub Name': 'Hub 2',
+                            'IP Address': '10.0.0.34',
+                            'Max Devices': 8,
+                            'Availability': 'Available',
+                            'Assigned Server': 'None'
+                        },
+                        {
+                            'ID': 5,
+                            'Hub Name': 'Hub 3',
+                            'IP Address': '10.0.0.35',
+                            'Max Devices': 9,
+                            'Availability': 'Available',
+                            'Assigned Server': 'None'
                         }
                     ]
                 }
@@ -486,18 +517,32 @@
                     'emulatorList':
                     [
                         {
-                            'Emulator Name': 'Samsung Galaxy 5',
+                            'Emulator Name': 'Nexus 4',
                             'OS': 'Android',
                             'Version': 4.4,
                             'RAM': 512,
-                            'Status': 'Running'
+                            'Status': 'Not Running'
                         },
                         {
                             'Emulator Name': 'Nexus 5',
                             'OS': 'Android',
                             'Version': 5.0,
-                            'RAM': 512,
+                            'RAM': 1024,
                             'Status': 'Not Running'
+                        },
+                        {
+                            'Emulator Name':'Nexus S',
+                            'OS':'Android',
+                            'Version': 5.0,
+                            'RAM': 2048,
+                            'Status':'Not Running'
+                        },
+                        {
+                            'Emulator Name':'Nexus One',
+                            'OS':'Android',
+                            'Version': 4.4,
+                            'RAM': 512,
+                            'Status':'Not Running'
                         }
                     ]
                 }
@@ -514,17 +559,31 @@
                     'deviceList':
                     [
                         {
-                            'Device Name':'Samsung Galaxy 5',
+                            'Device Name':'Samsung Galaxy 6',
                             'OS':'Android',
                             'Version': 4.4,
-                            'RAM': 512,
-                            'Status':'Running'
+                            'RAM': 1024,
+                            'Status':'Not Running'
                         },
                         {
-                            'SerialID':'Nexus 5',
+                            'Device Name':'Nexus 6',
                             'OS':'Android',
                             'Version': 5.0,
-                            'RAM': 512,
+                            'RAM': 2048,
+                            'Status':'Not Running'
+                        },
+                        {
+                            'Device Name':'LG G4',
+                            'OS':'Android',
+                            'Version': 5.0,
+                            'RAM': 1024,
+                            'Status':'Not Running'
+                        },
+                        {
+                            'Device Name':'HTC One',
+                            'OS':'Android',
+                            'Version': 5.0,
+                            'RAM': 2048,
                             'Status':'Not Running'
                         }
                     ]

@@ -141,7 +141,8 @@
 								  <th>Actions</th>
 							  </tr>
 						  </thead>   
-						  <tbody>
+						  <tbody id="tableBody">
+                            <!--Table Content now Populated From Local Storage
 							<tr>
 								<td>1</td>
 								<td class="center">Hub</td>
@@ -152,7 +153,7 @@
 								<td class="center">
 									<!--<a class="btn btn-success" href="#">
 										<i class="halflings-icon white zoom-in"></i>  
-									</a>-->
+									</a>
 									<a class="btn btn-info" href="#">
 										<i class="halflings-icon white edit"></i>  
 									</a>
@@ -172,7 +173,7 @@
 								<td class="center">
 									<!--<a class="btn btn-success" href="#">
 										<i class="halflings-icon white zoom-in"></i>  
-									</a>-->
+									</a>
 									<a class="btn btn-info" href="#">
 										<i class="halflings-icon white edit"></i>  
 									</a>
@@ -192,7 +193,7 @@
 								<td class="center">
 									<!--<a class="btn btn-success" href="#">
 										<i class="halflings-icon white zoom-in"></i>  
-									</a>-->
+									</a>
 									<a class="btn btn-info" href="#">
 										<i class="halflings-icon white edit"></i>  
 									</a>
@@ -201,9 +202,8 @@
 									</a>
 								</td>
 							</tr>
-                              
-                            
-				        </tbody>
+                            End of Commenting for Hub Table Content-->  
+                        </tbody>
 					  </table>            
 					</div>
 				</div><!--/span-->
@@ -464,6 +464,27 @@
         var chart3 = new google.visualization.PieChart(document.getElementById('piechart3'));
         chart3.draw(data, options);
       }
+    </script>
+    
+    <!--Script for Populating Table From Local Storage-->
+    <script>
+        $(document).ready(populate);
+        function populate(){
+            var storedHubs = JSON.parse(localStorage.getItem("hubs"));
+            if(storedHubs){
+                var hubArray = storedHubs.hubList;
+                for(i=0; i<hubArray.length; i++){
+                    var tableRow = "<tr><td>"+hubArray[i]["ID"]+"</td><td>"+hubArray[i]["Hub Name"]+"</td>"+
+                                    "<td>"+hubArray[i]["IP Address"]+"</td><td>"+hubArray[i]["Max Devices"]+"</td>"+
+                                    "<td>"+hubArray[i]["Availability"]+"</td><td>"+hubArray[i]["Assigned Server"]+"</td>"+
+                                "<td class='center'>"+
+									"<a class='btn btn-info' href='#'><i class='halflings-icon white trash'></i></a> "+
+									"<a class='btn btn-danger' href='#'><i class='halflings-icon white trash'></i></a>"+
+								"</td></tr>";
+                    $("#tableBody").append(tableRow);
+                }
+            }
+        }
     </script>
     <!-- end: JavaScript-->
 	
