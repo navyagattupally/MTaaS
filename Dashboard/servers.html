@@ -129,7 +129,7 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable">
+						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="serverTable">
 						  <thead>
 							  <tr>
 								  <th>Server Name</th>
@@ -142,7 +142,8 @@
 								  <th>Actions</th>
 							  </tr>
 						  </thead>   
-						  <tbody>
+						  <tbody id="tableBody">
+                            <!--Table Data Now Populated From Local Storage
 							<tr>
 								<td>Test Server 1</td>
 								<td class="center">10.0.0.1</td>
@@ -156,7 +157,7 @@
 								<td class="center">
 									<!--<a class="btn btn-success" href="#">
 										<i class="halflings-icon white zoom-in"></i>  
-									</a>-->
+									</a>
 									<a class="btn btn-info" href="#">
 										<i class="halflings-icon white edit"></i>  
 									</a>
@@ -179,7 +180,7 @@
 								<td class="center">
 									<!--<a class="btn btn-success" href="#">
 										<i class="halflings-icon white zoom-in"></i>  
-									</a>-->
+									</a>
 									<a class="btn btn-info" href="#">
 										<i class="halflings-icon white edit"></i>  
 									</a>
@@ -202,7 +203,7 @@
 								<td class="center">
 									<!--<a class="btn btn-success" href="#">
 										<i class="halflings-icon white zoom-in"></i>  
-									</a>-->
+									</a>
 									<a class="btn btn-info" href="#">
 										<i class="halflings-icon white edit"></i>  
 									</a>
@@ -225,7 +226,7 @@
 								<td class="center">
 									<!--<a class="btn btn-success" href="#">
 										<i class="halflings-icon white zoom-in"></i>  
-									</a>-->
+									</a>
 									<a class="btn btn-info" href="#">
 										<i class="halflings-icon white edit"></i>  
 									</a>
@@ -248,7 +249,7 @@
 								<td class="center">
 									<!--<a class="btn btn-success" href="#">
 										<i class="halflings-icon white zoom-in"></i>  
-									</a>-->
+									</a>
 									<a class="btn btn-info" href="#">
 										<i class="halflings-icon white edit"></i>  
 									</a>
@@ -257,6 +258,7 @@
 									</a>
 								</td>
 							</tr>
+                            End of Table Content Commenting-->
 				        </tbody>
 					  </table>            
 					</div>
@@ -508,6 +510,28 @@
         var chart3 = new google.visualization.PieChart(document.getElementById('piechart3'));
         chart3.draw(data, options);
       }
+    </script>
+    
+    <!--Script for Populating Tables From Local Storage-->
+    <script>
+        $(document).ready(populate);
+        function populate(){
+            var storedServers = JSON.parse(localStorage.getItem("servers"));
+            if(storedServers){
+                var serverArray = storedServers.serverList;
+                for(i=0; i<serverArray.length; i++){
+                    var tableRow = "<tr><td>"+serverArray[i]["Server Name"]+"</td><td>"+serverArray[i]["IP Address"]+"</td>"+
+                                    "<td>"+serverArray[i]["Image Name"]+"</td><td>"+serverArray[i]["Location"]+"</td>"+
+                                    "<td>"+serverArray[i]["Status"]+"</td><td>"+serverArray[i]["Date Created"]+"</td>"+
+                                    "<td>"+serverArray[i]["Availability"]+"</td>"+
+                                "<td class='center'>"+
+									"<a class='btn btn-info' href='#'><i class='halflings-icon white trash'></i></a> "+
+									"<a class='btn btn-danger' href='#'><i class='halflings-icon white trash'></i></a>"+
+								"</td></tr>";
+                    $("#tableBody").append(tableRow);
+                }
+            }
+        }
     </script>
     <!-- end: JavaScript-->
 	
