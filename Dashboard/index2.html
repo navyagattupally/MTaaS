@@ -36,35 +36,27 @@
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
-	
-		
-		
-		
-</head>
- <style>
-  
-  .node image {
-    fill: #fff;
-    stroke: steelblue;
-    stroke-width: 3px;
-  }
 
-  .node text { font: 12px sans-serif; }
+    <style>
+        #graph{display: inline; float: left; padding-left: -10px;}
+        #resources{margin-top: 70px; font-size: 15px;}
+        .node image{
+            fill: #fff;
+            stroke: steelblue;
+            stroke-width: 3px;
+        }
 
-  .link {
-    fill: none;
-    stroke: #ccc;
-    stroke-width: 2px;
-  }
+        .node text{ font: 12px sans-serif; }
+
+        .link{
+            fill: none;
+            stroke: #ccc;
+            stroke-width: 2px;
+        }
+        
 
     </style>
-<div id="popup1" style="display: block">No of resources</div>
-</div>    
-<div id="popup" style="display: none;width: 50px;
-    height: 20px;
-    border: 1px solid blue;">No of resources</div>
-
-  </head>
+</head>
   
 <body>
 		<!-- start: Header -->
@@ -156,7 +148,6 @@
 			<!-- start: Content -->
 			<div id="content" class="span10">
 			
-			
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
@@ -166,7 +157,12 @@
 				<li><a href="test.html">Run Time Graph</a></li>
 			</ul>
                 
-            <!--Beginning of Test Server Table-->    
+            <div id="graph">
+            </div>
+            <div id="resources">
+            <span id="popup1" style="display: inline float:left">No of resources:</span>    
+            <span id="popup" style="display: inline width: 10px; height: 20px; border: 1px solid blue;"></span>
+            </div>
 			
 		</div><!--/fluid-row-->
 		
@@ -241,7 +237,7 @@
  
 	
 </body>
-  <body>
+<!--<body>-->
 
 <!-- load the d3.js library --> 
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -432,7 +428,7 @@ var treeData = [
 ];
 
 // ************** Generate the tree diagram  *****************
-var margin = {top: 20, right: 120, bottom: 20, left: 120},
+var margin = {top: 20, right: 50, bottom: 20, left: 50},
   width = 960 - margin.right - margin.left,
   height = 500 - margin.top - margin.bottom;
   
@@ -444,7 +440,7 @@ var tree = d3.layout.tree()
 var diagonal = d3.svg.diagonal()
   .projection(function(d) { return [d.y, d.x]; });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#graph").append("svg")
   .attr("width", width + margin.right + margin.left)
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -540,22 +536,15 @@ function click(d) {
   update(d);
 
 }
-function mover(d) {
-
-  document.getElementById('popup').style.display = 'block';
-        document.getElementById('popup').innerHTML = d.value;
-
-
+function mover(d){
+    document.getElementById('popup').style.display = 'inline';
+    document.getElementById('popup').innerHTML = d.value;
 }
-function mout() {
-  document.getElementById('popup').style.display = 'none';
-          document.getElementById('popup').innerHTML = this.d;
-
+function mout(){
+    document.getElementById('popup').style.display = 'none';
+    document.getElementById('popup').innerHTML = this.d;
 }
 
 </script>
-  
-  </body>
-
-
+<!--</body>-->
 </html>
