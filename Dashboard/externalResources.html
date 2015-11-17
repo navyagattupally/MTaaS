@@ -37,7 +37,9 @@
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
 	
-		
+	<style>
+        input{width: 50%}
+    </style>
 		
 		
 </head>
@@ -124,14 +126,88 @@
 				</li>
 			</ul>
             
-            <h2><b>Resources at a Glance</b></h2>
-                
-            <!--Beginning of Google Charts-->
-            <div id="piechart" style="width: 500px; height: 350px; display:in-line; float:left; border-right: solid 0px gray"></div>
-            <div id="piechart1" style="width: 500px; height: 350px; display:in-line; float:left; border-right: solid 0px gray"></div>
-            <div id="piechart2" style="width: 500px; height: 350px; display:in-line; float:left; border-right: solid 0px gray"></div>
-            <div id="piechart3" style="width: 500px; height: 350px; display:in-line; float:left; border-right: solid 0px gray"></div>
-                
+                    <h2><b>Feeling Generous?... Add Your Resources to our Resource Pool</b></h2>
+                    <br/>
+                    <!--Beginning of Server Donations-->
+                    <h4>Server Donations</h4>
+                    <form role="form">
+                    <div class="form-group">
+                        <label for="sName">Server Name:</label>
+                        <input type="text" class="form-control" id="sName" placeholder="Enter Server Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="ip">IP Address/URL:</label>
+                      <input type="text" class="form-control" id="ip" placeholder="Enter IP Address/URL">
+                    </div>
+                    <div class="form-group">
+                      <label for="iName">Image Name:</label>
+                      <input type="text" class="form-control" id="iName" placeholder="Enter Image Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="location">Location:</label>
+                      <input type="text" class="form-control" id="location" placeholder="Enter Location">
+                    </div>
+                    <div class="form-group">
+                      <label for="iName">Location:</label>
+                      <input type="text" class="form-control" id="location" placeholder="Enter Location">
+                    </div>
+                    <div class="form-group">
+                      <label for="CPUs">No. of CPUs:</label>
+                      <input type="text" class="form-control" id="CPUs" placeholder="Enter no. of CPUs">
+                    </div>
+                    <div class="form-group">
+                      <label for="RAM">RAM:</label>
+                      <input type="text" class="form-control" id="RAM" placeholder="Enter RAM">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                  </form>
+            <h4>Hub Donations</h4>
+                <div class="form-group">
+                    <label for="hID">ID:</label>
+                    <input type="text" class="form-control" id="hID" placeholder="Enter Hub ID">
+                </div>
+                <div class="form-group">
+                    <label for="hName">Hub Name:</label>
+                    <input type="text" class="form-control" id="hName" placeholder="Enter Hub Name">
+                </div>
+                <div class="form-group">
+                    <label for="hIP">Hub IP Address:</label>
+                    <input type="text" class="form-control" id="hIP" placeholder="Enter Hub IP Address">
+                </div>
+                <div class="form-group">
+                    <label for="hDevices">Max no. of Devices:</label>
+                    <input type="text" class="form-control" id="hDevices" placeholder="Enter Max no. of Devices">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            <h4>Device Donations</h4>
+                <div class="form-group">
+                    <label for="dName">Device Name:</label>
+                    <input type="text" class="form-control" id="dName" placeholder="Enter Device Name">
+                </div>
+                <div class="form-group">
+                    <label for="dOS">OS:</label>
+                    <select class="form-control" id="dOS">
+                        <option>Android</option>
+                        <option>iOS</option>
+                        <option>Windows Phone</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dVersion">OS Version:</label>
+                    <input type="text" class="form-control" id="dVersion" placeholder="Enter OS Version">
+                </div>
+                <div class="form-group">
+                    <label for="dRAM">RAM:</label>
+                    <input type="text" class="form-control" id="dRAM" placeholder="Enter Device RAM">
+                </div>
+                <div class="form-group">
+                    <label for="dType">Device Type:</label>
+                    <select class="form-control" id="dType">
+                        <option>Virtual</option>
+                        <option>Real</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
 			</div><!--/.fluid-container-->
 	       <!-- end: Content -->
 		</div><!--/#content.span10-->
@@ -307,71 +383,6 @@
         });
     });
 });
-    </script>
-    
-    <!--Import Google Charts Scripts-->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        
-        //Draw chart for server availability
-        var data = google.visualization.arrayToDataTable([
-          ['Server Status', 'Percentage'],
-          ['Available',     1],
-          ['Unavailable',      4]
-        ]);
-
-        var options = {
-          title: 'Server Availability'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, options);
-          
-        //Draw chart for hub availability
-        var data = google.visualization.arrayToDataTable([
-          ['Hub Status', 'Percentage'],
-          ['Available',     2],
-          ['Unavailable',      1]
-        ]);
-
-        var options = {
-          title: 'Hub Availability'
-        };
-
-        var chart1 = new google.visualization.PieChart(document.getElementById('piechart1'));
-        chart1.draw(data, options);
-          
-        //Draw chart for emulator availability
-        var data = google.visualization.arrayToDataTable([
-          ['Emulator Status', 'Percentage'],
-          ['Available',     1],
-          ['Unavailable',      1]
-        ]);
-
-        var options = {
-          title: 'Emulator Availability'
-        };
-
-        var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
-        chart2.draw(data, options);
-          
-        //Draw chart for physical device availability
-        var data = google.visualization.arrayToDataTable([
-          ['Device Status', 'Percentage'],
-          ['Available',     1],
-          ['Unavailable',      1]
-        ]);
-
-        var options = {
-          title: 'Physical Device Availability'
-        };
-
-        var chart3 = new google.visualization.PieChart(document.getElementById('piechart3'));
-        chart3.draw(data, options);
-      }
     </script>
     
     <!--Beginning of Script for LocalStorage-->
