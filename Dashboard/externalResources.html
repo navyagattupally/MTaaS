@@ -212,7 +212,7 @@
                             <option>Real</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default" onclick="addDevice()">Submit</button>
                 </form>
 			</div><!--/.fluid-container-->
 	       <!-- end: Content -->
@@ -624,7 +624,7 @@
             var ram = $("#RAM").val();
             
             var server = {
-                'Server Name': serverName,
+                'Server Name': "*"+serverName,
                 'IP Address': ipAddress,
                 'Image Name': imageName,
                 'Location': location,
@@ -650,7 +650,7 @@
             
             var hub = {
                 'ID': hID,
-                'Hub Name': hName,
+                'Hub Name': "*"+hName,
                 'IP Address': hIP,
                 'Max Devices': maxDevices,
                 'Availability': 'Unavailable',
@@ -660,6 +660,40 @@
             storedHubs.hubList.push(hub);
             localStorage.setItem('hubs', JSON.stringify(storedHubs));
             alert("Thank you. Your Hub has Been Added!");
+        }
+        //Function to add Device
+        function addDevice(){
+            var storedEmulators = JSON.parse(localStorage.getItem("emulators"));
+            var storedDevices = JSON.parse(localStorage.getItem("devices"));
+            
+            var dName = $("#dName").val();
+            var dOS = $("#dOS").val();
+            var version = $("#dVersion").val();
+            var ram = $("#dRAM").val();
+            var type = $("#dType").val();
+        
+            if(type == "Virtual"){
+                emulator = {
+                    'Emulator Name': "*"+dName,
+                    'OS':dOS,
+                    'Version': version,
+                    'RAM': ram,
+                    'Status':'Not Running'
+                }
+                storedEmulators.emulatorList.push(emulator);
+                localStorage.setItem('emulators', JSON.stringify(storedEmulators));
+            }
+            else{
+                device = {
+                    'Device Name': "*"+dName,
+                    'OS':dOS,
+                    'Version': version,
+                    'RAM': ram,
+                    'Status':'Not Running'
+                }
+                storedDevices.deviceList.push(device);
+                localStorage.setItem('devices', JSON.stringify(storedDevices));
+            }
         }
     </script>
     <!-- end: JavaScript-->
