@@ -312,6 +312,17 @@
     <!--Import Google Charts Scripts-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
+        var availableServers = 0;
+        var unavailableServers = 0;
+        var availableHubs = 0;
+        var unavailableHubs = 0;
+        var availableEmulators = 0;
+        var unavailableEmulators = 0;
+        var availableDevices = 0;
+        var unavailableDevices = 0;
+        
+        
+        
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
@@ -319,8 +330,8 @@
         //Draw chart for server availability
         var data = google.visualization.arrayToDataTable([
           ['Server Status', 'Percentage'],
-          ['Available',     1],
-          ['Unavailable',      4]
+          ['Available',     availableServers],
+          ['Unavailable',      unavailableServers]
         ]);
 
         var options = {
@@ -333,8 +344,8 @@
         //Draw chart for hub availability
         var data = google.visualization.arrayToDataTable([
           ['Hub Status', 'Percentage'],
-          ['Available',     2],
-          ['Unavailable',      1]
+          ['Available',     availableHubs],
+          ['Unavailable',      unavailableHubs]
         ]);
 
         var options = {
@@ -347,8 +358,8 @@
         //Draw chart for emulator availability
         var data = google.visualization.arrayToDataTable([
           ['Emulator Status', 'Percentage'],
-          ['Available',     1],
-          ['Unavailable',      1]
+          ['Available',     availableEmulators],
+          ['Unavailable',      unavailableEmulators]
         ]);
 
         var options = {
@@ -361,8 +372,8 @@
         //Draw chart for physical device availability
         var data = google.visualization.arrayToDataTable([
           ['Device Status', 'Percentage'],
-          ['Available',     1],
-          ['Unavailable',      1]
+          ['Available',     availableDevices],
+          ['Unavailable',      unavailableDevices]
         ]);
 
         var options = {
@@ -453,6 +464,14 @@
                 storedServers = servers;
             }//End of Server Initialization
             
+            //Get Number of available and Unavailable Servers for Google Charts
+            for(i=0; i<storedServers.serverList.length;i++){
+                if(storedServers.serverList[i]["Availability"] == "Available")
+                    availableServers++;
+                else
+                    unavailableServers++;
+            }
+            
             //Get Stored Hub List
             var storedHubs = JSON.parse(localStorage.getItem("hubs"));
             
@@ -508,6 +527,14 @@
                 storedHubs = hubs;
             }//End of Hub Initialization
             
+            //Get Number of Available and Unavailable Hubs for Google Charts
+            for(i=0; i<storedHubs.hubList.length;i++){
+                if(storedHubs.hubList[i]["Availability"] == "Available")
+                    availableHubs++;
+                else
+                    unavailableHubs++;
+            }
+            
             //Get Stored Emulator List
             var storedEmulators = JSON.parse(localStorage.getItem("emulators"));
             
@@ -522,7 +549,7 @@
                             'OS': 'Android',
                             'Version': 4.4,
                             'RAM': 512,
-                            'Status': 'Not Running'
+                            'Status': 'Running'
                         },
                         {
                             'Emulator Name': 'Nexus 5',
@@ -551,6 +578,14 @@
                 storedEmulators = emulators;
             }//End of Emulator initialization
             
+            //Get Number of Available and Unavailable Emulators for Google Charts
+            for(i=0; i<storedEmulators.emulatorList.length;i++){
+                if(storedEmulators.emulatorList[i]["Status"] == "Not Running")
+                    availableEmulators++;
+                else
+                    unavailableEmulators++;
+            }
+            
             //Get Stored Device List
             var storedDevices = JSON.parse(localStorage.getItem("devices"));
             
@@ -564,7 +599,7 @@
                             'OS':'Android',
                             'Version': 4.4,
                             'RAM': 1024,
-                            'Status':'Not Running'
+                            'Status':'Running'
                         },
                         {
                             'Device Name':'Nexus 6',
@@ -578,7 +613,7 @@
                             'OS':'Android',
                             'Version': 5.0,
                             'RAM': 1024,
-                            'Status':'Not Running'
+                            'Status':'Running'
                         },
                         {
                             'Device Name':'HTC One',
@@ -592,6 +627,14 @@
                 localStorage.setItem('devices', JSON.stringify(devices));
                 storedDevices = devices;
             }//End of Device Initialization
+            
+            //Get Number of Available and Unavialable Devices for Google Charts
+            for(i=0; i<storedDevices.deviceList.length;i++){
+                if(storedDevices.deviceList[i]["Status"] == "Not Running")
+                    availableDevices++;
+                else
+                    unavailableDevices++;
+            }
     }
     </script>
     <!-- end: JavaScript-->
