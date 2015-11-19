@@ -129,8 +129,9 @@
                     <h2><b>Feeling Generous?... Add Your Resources to our Resource Pool</b></h2>
                     <br/>
                     <!--Beginning of Server Donations-->
-                    <h4>Server Donations</h4>
-                    <form role="form">
+                    <a data-toggle="collapse" data-target="#sForms"><h4>Server Donations</h4></a>
+                    <div id="sForms">
+                    <form role="form" id="sForm">
                     <div class="form-group">
                         <label for="sName">Server Name:</label>
                         <input type="text" class="form-control" id="sName" placeholder="Enter Server Name">
@@ -148,10 +149,6 @@
                       <input type="text" class="form-control" id="location" placeholder="Enter Location">
                     </div>
                     <div class="form-group">
-                      <label for="iName">Location:</label>
-                      <input type="text" class="form-control" id="location" placeholder="Enter Location">
-                    </div>
-                    <div class="form-group">
                       <label for="CPUs">No. of CPUs:</label>
                       <input type="text" class="form-control" id="CPUs" placeholder="Enter no. of CPUs">
                     </div>
@@ -159,55 +156,64 @@
                       <label for="RAM">RAM:</label>
                       <input type="text" class="form-control" id="RAM" placeholder="Enter RAM">
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default" onclick="addServer()">Submit</button>
                   </form>
+                </div>
+                <br/>
+            <!--Beginning of Hub Donations-->
             <h4>Hub Donations</h4>
-                <div class="form-group">
-                    <label for="hID">ID:</label>
-                    <input type="text" class="form-control" id="hID" placeholder="Enter Hub ID">
-                </div>
-                <div class="form-group">
-                    <label for="hName">Hub Name:</label>
-                    <input type="text" class="form-control" id="hName" placeholder="Enter Hub Name">
-                </div>
-                <div class="form-group">
-                    <label for="hIP">Hub IP Address:</label>
-                    <input type="text" class="form-control" id="hIP" placeholder="Enter Hub IP Address">
-                </div>
-                <div class="form-group">
-                    <label for="hDevices">Max no. of Devices:</label>
-                    <input type="text" class="form-control" id="hDevices" placeholder="Enter Max no. of Devices">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <form role="form">
+                    <div class="form-group">
+                        <label for="hID">ID:</label>
+                        <input type="text" class="form-control" id="hID" placeholder="Enter Hub ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="hName">Hub Name:</label>
+                        <input type="text" class="form-control" id="hName" placeholder="Enter Hub Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="hIP">Hub IP Address:</label>
+                        <input type="text" class="form-control" id="hIP" placeholder="Enter Hub IP Address">
+                    </div>
+                    <div class="form-group">
+                        <label for="hDevices">Max no. of Devices:</label>
+                        <input type="text" class="form-control" id="hDevices" placeholder="Enter Max no. of Devices">
+                    </div>
+                    <button type="submit" class="btn btn-default" onclick="addHub()">Submit</button>
+                </form>
+                <br/>
+            <!--Beginning of Device Donations-->
             <h4>Device Donations</h4>
-                <div class="form-group">
-                    <label for="dName">Device Name:</label>
-                    <input type="text" class="form-control" id="dName" placeholder="Enter Device Name">
-                </div>
-                <div class="form-group">
-                    <label for="dOS">OS:</label>
-                    <select class="form-control" id="dOS">
-                        <option>Android</option>
-                        <option>iOS</option>
-                        <option>Windows Phone</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="dVersion">OS Version:</label>
-                    <input type="text" class="form-control" id="dVersion" placeholder="Enter OS Version">
-                </div>
-                <div class="form-group">
-                    <label for="dRAM">RAM:</label>
-                    <input type="text" class="form-control" id="dRAM" placeholder="Enter Device RAM">
-                </div>
-                <div class="form-group">
-                    <label for="dType">Device Type:</label>
-                    <select class="form-control" id="dType">
-                        <option>Virtual</option>
-                        <option>Real</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <form role="from">
+                    <div class="form-group">
+                        <label for="dName">Device Name:</label>
+                        <input type="text" class="form-control" id="dName" placeholder="Enter Device Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="dOS">OS:</label>
+                        <select class="form-control" id="dOS">
+                            <option>Android</option>
+                            <option>iOS</option>
+                            <option>Windows Phone</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dVersion">OS Version:</label>
+                        <input type="text" class="form-control" id="dVersion" placeholder="Enter OS Version">
+                    </div>
+                    <div class="form-group">
+                        <label for="dRAM">RAM:</label>
+                        <input type="text" class="form-control" id="dRAM" placeholder="Enter Device RAM">
+                    </div>
+                    <div class="form-group">
+                        <label for="dType">Device Type:</label>
+                        <select class="form-control" id="dType">
+                            <option>Virtual</option>
+                            <option>Real</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
 			</div><!--/.fluid-container-->
 	       <!-- end: Content -->
 		</div><!--/#content.span10-->
@@ -604,6 +610,57 @@
                 storedDevices = devices;
             }//End of Device Initialization
     }
+    </script>
+    <!--Script for Adding External Resources-->
+    <script>
+        //Function to add Server
+        function addServer(){
+            var storedServers = JSON.parse(localStorage.getItem("servers"));
+            var serverName = $("#sName").val();
+            var ipAddress = $("#ip").val();
+            var imageName = $("#iName").val();
+            var location = $("#location").val();
+            var nCPUs = $("#CPUs").val();
+            var ram = $("#RAM").val();
+            
+            var server = {
+                'Server Name': serverName,
+                'IP Address': ipAddress,
+                'Image Name': imageName,
+                'Location': location,
+                'Status': 'Inactive',
+                'Date Created': new Date(),
+                'Availability': 'Unavailable',
+                'no. of CPUs': nCPUs,
+                'CPUs in use': 0,
+                'RAM': ram        
+            };
+            
+            storedServers.serverList.push(server);
+            localStorage.setItem('servers', JSON.stringify(storedServers));
+            alert("Thank you. Your Server has been Added!");
+        }
+        //Function to add Hub
+        function addHub(){
+            var storedHubs = JSON.parse(localStorage.getItem("hubs"));
+            var hID = $("#hID").val();
+            var hName = $("#hName").val();
+            var hIP = $("#hIP").val();
+            var maxDevices = $("#hDevices").val();
+            
+            var hub = {
+                'ID': hID,
+                'Hub Name': hName,
+                'IP Address': hIP,
+                'Max Devices': maxDevices,
+                'Availability': 'Unavailable',
+                'Assigned Server': 'None'
+            };
+            
+            storedHubs.hubList.push(hub);
+            localStorage.setItem('hubs', JSON.stringify(storedHubs));
+            alert("Thank you. Your Hub has Been Added!");
+        }
     </script>
     <!-- end: JavaScript-->
 </body>
