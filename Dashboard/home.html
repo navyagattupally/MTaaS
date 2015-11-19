@@ -306,82 +306,6 @@
 });
     </script>
     
-    <!--Import Google Charts Scripts-->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-        var availableServers = 0;
-        var unavailableServers = 0;
-        var availableHubs = 0;
-        var unavailableHubs = 0;
-        var availableEmulators = 0;
-        var unavailableEmulators = 0;
-        var availableDevices = 0;
-        var unavailableDevices = 0;
-        
-        
-        
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        
-        //Draw chart for server availability
-        var data = google.visualization.arrayToDataTable([
-          ['Server Status', 'Percentage'],
-          ['Available',     availableServers],
-          ['Unavailable',      unavailableServers]
-        ]);
-
-        var options = {
-          title: 'Server Availability'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        chart.draw(data, options);
-          
-        //Draw chart for hub availability
-        var data = google.visualization.arrayToDataTable([
-          ['Hub Status', 'Percentage'],
-          ['Available',     availableHubs],
-          ['Unavailable',      unavailableHubs]
-        ]);
-
-        var options = {
-          title: 'Hub Availability'
-        };
-
-        var chart1 = new google.visualization.PieChart(document.getElementById('piechart1'));
-        chart1.draw(data, options);
-          
-        //Draw chart for emulator availability
-        var data = google.visualization.arrayToDataTable([
-          ['Emulator Status', 'Percentage'],
-          ['Available',     availableEmulators],
-          ['Unavailable',      unavailableEmulators]
-        ]);
-
-        var options = {
-          title: 'Emulator Availability'
-        };
-
-        var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
-        chart2.draw(data, options);
-          
-        //Draw chart for physical device availability
-        var data = google.visualization.arrayToDataTable([
-          ['Device Status', 'Percentage'],
-          ['Available',     availableDevices],
-          ['Unavailable',      unavailableDevices]
-        ]);
-
-        var options = {
-          title: 'Physical Device Availability'
-        };
-
-        var chart3 = new google.visualization.PieChart(document.getElementById('piechart3'));
-        chart3.draw(data, options);
-      }
-    </script>
-    
     <!--Beginning of Script for LocalStorage-->
     <script>
         function initialize(){
@@ -401,7 +325,7 @@
                             'Image Name': 'cirros-0.3.2x86_64-uec',
                             'Location': 'USA',
                             'Status': 'Active',
-                            'Date Created': '9/19/2015',
+                            'Date Created': new Date("9/19/2015"),
                             'Availability': 'Available',
                             'no. of CPUs': 5,
                             'CPUs in use': 2,
@@ -413,7 +337,7 @@
                             'Image Name': 'cirros-0.3.2x86_64-uec',
                             'Location': 'China',
                             'Status': 'Active',
-                            'Date Created': '9/20/2015',
+                            'Date Created': new Date("9/20/2015"),
                             'Availability': 'Unavailable',
                             'no. of CPUs': 3,
                             'CPUs in use': 1,
@@ -425,7 +349,7 @@
                             'Image Name': 'cirros-0.3.2x86_64-uec',
                             'Location': 'India',
                             'Status': 'Inactive',
-                            'Date Created': '9/20/2015',
+                            'Date Created': new Date("9/20/2015"),
                             'Availability': 'Unavailable',
                             'no. of CPUs': 2,
                             'CPUs in use': 0,
@@ -437,7 +361,7 @@
                             'Image Name': 'cirros-0.3.2x86_64-uec',
                             'Location': 'USA',
                             'Status': 'Inactive',
-                            'Date Created': '9/18/2015',
+                            'Date Created': new Date("9/18/2015"),
                             'Availability': 'Unavailable',
                             'no. of CPUs': 5,
                             'CPUs in use': 1,
@@ -449,7 +373,7 @@
                             'Image Name': 'cirros-0.3.2x86_64-uec',
                             'Location': 'USA',
                             'Status': 'Inactive',
-                            'Date Created': '9/18/2015',
+                            'Date Created': new Date("9/18/2015"),
                             'Availability': 'Unavailable',
                             'no. of CPUs': 5,
                             'CPUs in use': 3,
@@ -633,6 +557,82 @@
                     unavailableDevices++;
             }
     }
+    </script>
+    
+    <!--Import Google Charts Scripts-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        var availableServers = 0;
+        var unavailableServers = 0;
+        var availableHubs = 0;
+        var unavailableHubs = 0;
+        var availableEmulators = 0;
+        var unavailableEmulators = 0;
+        var availableDevices = 0;
+        var unavailableDevices = 0;
+        
+        
+        
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        
+        //Draw chart for server availability
+        var data = google.visualization.arrayToDataTable([
+          ['Server Status', 'Percentage'],
+          ['Available',     availableServers],
+          ['Unavailable',      unavailableServers]
+        ]);
+
+        var options = {
+          title: 'Server Availability'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+          
+        //Draw chart for hub availability
+        var data = google.visualization.arrayToDataTable([
+          ['Hub Status', 'Percentage'],
+          ['Available',     availableHubs],
+          ['Unavailable',      unavailableHubs]
+        ]);
+
+        var options = {
+          title: 'Hub Availability'
+        };
+
+        var chart1 = new google.visualization.PieChart(document.getElementById('piechart1'));
+        chart1.draw(data, options);
+          
+        //Draw chart for emulator availability
+        var data = google.visualization.arrayToDataTable([
+          ['Emulator Status', 'Percentage'],
+          ['Available',     availableEmulators],
+          ['Unavailable',      unavailableEmulators]
+        ]);
+
+        var options = {
+          title: 'Emulator Availability'
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+        chart2.draw(data, options);
+          
+        //Draw chart for physical device availability
+        var data = google.visualization.arrayToDataTable([
+          ['Device Status', 'Percentage'],
+          ['Available',     availableDevices],
+          ['Unavailable',      unavailableDevices]
+        ]);
+
+        var options = {
+          title: 'Physical Device Availability'
+        };
+
+        var chart3 = new google.visualization.PieChart(document.getElementById('piechart3'));
+        chart3.draw(data, options);
+      }
     </script>
     <!-- end: JavaScript-->
 </body>
