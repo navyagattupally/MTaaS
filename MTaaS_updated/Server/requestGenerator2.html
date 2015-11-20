@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+	
+	<!-- start: Meta -->
+	<meta charset="utf-8">
+	<title>MTaaS</title>
+	<meta name="description" content="Bootstrap Metro Dashboard">
+	<meta name="author" content="Dennis Ji">
+	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+	<!-- end: Meta -->
+	
+	<!-- start: Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- end: Mobile Specific -->
+	
+	<!-- start: CSS -->
+	<link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link id="base-style" href="css/style.css" rel="stylesheet">
+	<link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
+	<link id="base-style" href="css/chosen.css" rel="stylesheet">
+	<link id="base-style" href="css/elfinder.min.css" rel="stylesheet">
+	<link id="base-style" href="css/elfinder.theme.css" rel="stylesheet">
+	<link id="base-style" href="css/font-awesome.min.css" rel="stylesheet">
+	<link id="base-style" href="css/font-awesome-ie7.min.css" rel="stylesheet">
+	<link id="base-style" href="css/fullcalendar.css" rel="stylesheet">
+	<link id="base-style" href="css/glyphicons.css" rel="stylesheet">
+	<link id="base-style" href="css/halflings.css" rel="stylesheet">
+	<link id="base-style" href="css/ie.css" rel="stylesheet">
+	<link id="base-style" href="css/ie9.css" rel="stylesheet">
+	<link id="base-style" href="css/jquery.cleditor.css" rel="stylesheet">
+	<link id="base-style" href="css/jquery.iphone.toggle.css" rel="stylesheet">
+	<link id="base-style" href="css/jquery.noty.css" rel="stylesheet">
+	<link id="base-style" href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
+	<link id="base-style" href="css/noty_theme_default.css" rel="stylesheet">
+	<link id="base-style" href="css/style-forms.css" rel="stylesheet">
+	<link id="base-style" href="css/style-responsive.css" rel="stylesheet">
+	<link id="base-style" href="css/uniform.default.css" rel="stylesheet">
+	<link id="base-style" href="css/uploadify.css" rel="stylesheet">
+	<link id="base-style" href="css/MTaas.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+	<!-- end: CSS -->
+	
+
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<link id="ie-style" href="css/ie.css" rel="stylesheet">
+	<![endif]-->
+	
+	<!--[if IE 9]>
+		<link id="ie9style" href="css/ie9.css" rel="stylesheet">
+	<![endif]-->
+		
+	<!-- start: Favicon -->
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<!-- end: Favicon -->
+	
+		
+		
+		
+</head>
+
+  
+<body>
+	<!-- start: Header -->
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="index.html"><span>MTaaS</span></a>
+								
+				<!-- start: Header Menu -->
+				<div class="nav-no-collapse header-nav">
+					<ul class="nav pull-right">
+                        
+                        
+						
+						<!-- start: User Dropdown -->
+						<li class="dropdown">
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+								<i class="halflings-icon white user"></i> Admin
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-menu-title">
+ 									<span>Account Settings</span>
+								</li>
+								<li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
+								<li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
+							</ul>
+						</li>
+						<!-- end: User Dropdown -->
+					</ul>
+				</div>
+				<!-- end: Header Menu -->
+				
+			</div>
+		</div>
+	</div>
+	<!-- start: Header -->
+	
+		<div class="container-fluid-full">
+		<div class="row-fluid">
+				
+			<!-- start: Main Menu -->
+			<div id="sidebar-left" class="span2">
+				<div class="nav-collapse sidebar-nav">
+					<ul class="nav nav-tabs nav-stacked main-menu">
+                        <li><a href="table.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Server List and Logistics</span></a></li>
+                        <li><a href="requestGenerator2.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Request Generator</span></a></li>
+                        
+
+                        <!--Consider deleting from here
+						<li><a href="index.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>	
+						<li><a href="messages.html"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
+						<li><a href="tasks.html"><i class="icon-tasks"></i><span class="hidden-tablet"> Tasks</span></a></li>
+						<li><a href="ui.html"><i class="icon-eye-open"></i><span class="hidden-tablet"> UI Features</span></a></li>
+						<li><a href="widgets.html"><i class="icon-dashboard"></i><span class="hidden-tablet"> Widgets</span></a></li>
+						<li>
+							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Dropdown</span><span class="label label-important"> 3 </span></a>
+							<ul>
+								<li><a class="submenu" href="submenu.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 1</span></a></li>
+								<li><a class="submenu" href="submenu2.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 2</span></a></li>
+								<li><a class="submenu" href="submenu3.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 3</span></a></li>
+							</ul>	
+						</li>
+						<li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>
+						<li><a href="chart.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> Charts</span></a></li>
+						<li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet"> Typography</span></a></li>
+						<li><a href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet"> Gallery</span></a></li>
+						<li><a href="calendar.html"><i class="icon-calendar"></i><span class="hidden-tablet"> Calendar</span></a></li>
+						<li><a href="file-manager.html"><i class="icon-folder-open"></i><span class="hidden-tablet"> File Manager</span></a></li>
+						<li><a href="icon.html"><i class="icon-star"></i><span class="hidden-tablet"> Icons</span></a></li>
+						<li><a href="login.html"><i class="icon-lock"></i><span class="hidden-tablet"> Login Page</span></a></li>
+                        Consider deleting to here-->
+					</ul>
+				</div>
+			</div>
+			<!-- end: Main Menu -->
+			
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+			
+			<!-- start: Content -->
+			<div id="content" class="span10">
+			
+			
+			<ul class="breadcrumb">
+				<li>
+					<i class="icon-home"></i>
+					<a href="index.html">Home</a> 
+					<i class="icon-angle-right"></i>
+				</li>
+				<li><a href="requestGenerator2.html">Request Generator</a></li>
+			</ul>
+			
+			
+			
+                
+            <!--Beginning of Test Server Table-->    
+			
+		<!--  </div><!--/fluid-row-->
+		
+		    <br>
+		    <br>
+		    <div class="form ">
+           <form type="form" method="POST" action="http://localhost:3000/resourceRequest">
+
+  <select class="form"  id='CPU' name="CPU">   
+                <option>Select CPU</option>
+                <option>Single 2GHz</option>
+                <option>Single 3GHz</option>
+                <option>Dual 1.2 GHz</option>
+                <option>Dual 1.4 GHz</option>
+                <option>Quad 1.2 GHz</option>
+  </select>
+   <select class="form"  id='mobile_os' name="mobile_os">
+                <option>Select OS</option>
+                <option>Android 4.0.0</option>
+                <option>Android 4.0.4</option>
+                <option>Android 4.1.1</option>
+                <option>Android 4.1.2</option>
+                <option>Android 4.1.3</option>
+                <option>Android 4.1.4</option>
+                <option>Android 4.1.5</option>
+                <option>Android 4.2.2</option>
+                <option>Android 4.2.4</option>
+                <option>Android 4.3.4</option>
+  </select>
+    <br>          
+  <select class="form"  id='ram' name="ram">
+                <option>Select RAM</option>
+                <option>256</option>
+                <option>512</option>
+                <option>1024</option>
+                <option>2048</option>
+                <option>4096</option>
+  </select>
+  
+  <select class="form"  id='disk' name="disk">
+                <option>Select Disk</option>
+                <option>256</option>
+                <option>1024</option>
+                <option>2048</option>
+                <option>4096</option>
+                <option>8192</option>
+  </select>
+
+<br>
+ <input type="text"  placeholder="No.of Instances" name="quantity" id='quantity'/>
+ <br>
+<input type="text"  placeholder="Duration" name="duration" id='duration'/>
+<br>
+<input type="text"  placeholder="No.of Requests" name="reqCount" id='reqCount'/>
+<br>
+
+<div class="bs-example">
+    <div class="btn-group"  data-toggle="buttons">
+        <label class="btn btn-primary">
+            <input type="radio" name="options" id="Mobility"> Mobility
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options" id="Cost Optimized"> Cost Optimized
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options" id="Resource Utilization"> Resource Utilization
+        </label>
+    </div>
+</div>
+
+<div  font="Helvetica Neue" font-size="3" >
+<input type="checkbox"  name="randomRequest" id="randomRequest" value=""/>
+<label for="Randomize Request" font="Helvetica Neue" font-size="3">RandomizeRequest</label>
+ </div>
+
+<!--#  Request type selections added by Kokil --> 
+ <label for="Static"  font="Helvetica Neue" font-size="3">Pick an algorithm :</label>
+<div class="bs-example">
+     <div  class="btn-group"  data-toggle="buttons">
+        <label class="btn btn-primary">
+            <input type="radio" name="options" id="locationAware" value = "locationAware">Location Aware
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options" id="honeybee" value = "HoneyBee"> Honey bee
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options" id="RoundRobin" value = "RoundRobin"> Round Robin
+        </label>
+         <label class="btn btn-primary">
+            <input type="radio" name="options" id="random" value = "random"> Random
+        </label>
+    </div>
+   
+</div>
+<br>
+
+
+ <button type="button" style="margin-left:15%" value="Submit" onclick="sendRequests()">Submit</button>
+    </form> 
+    
+       
+
+  </div>
+	<!-- start: JavaScript-->
+    <!--<script src="js/jquery-1.9.1.min.js"></script>-->
+   	
+</body>
+<div id="dialog" title="Basic dialog">
+  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
+
+</html>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ <script src="js/jquery-migrate-1.0.0.min.js"></script>
+	
+		<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
+	
+		<script src="js/jquery.ui.touch-punch.js"></script>
+	
+		<script src="js/modernizr.js"></script>
+	
+		<script src="js/bootstrap.min.js"></script>
+	
+		<script src="js/jquery.cookie.js"></script>
+	
+		<script src='js/fullcalendar.min.js'></script>
+	
+		<script src='js/jquery.dataTables.min.js'></script>
+
+		<script src="js/excanvas.js"></script>
+	<!--<script src="js/jquery.flot.js"></script>-->
+	<!--<script src="js/jquery.flot.pie.js"></script>-->
+	<script src="js/jquery.flot.stack.js"></script>
+	<script src="js/jquery.flot.resize.min.js"></script>
+	
+		<script src="js/jquery.chosen.min.js"></script>
+	
+		<script src="js/jquery.uniform.min.js"></script>
+		
+		<script src="js/jquery.cleditor.min.js"></script>
+	
+		<script src="js/jquery.noty.js"></script>
+	
+		<script src="js/jquery.elfinder.min.js"></script>
+	
+		<script src="js/jquery.raty.min.js"></script>
+	
+		<script src="js/jquery.iphone.toggle.js"></script>
+	
+		<script src="js/jquery.uploadify-3.1.min.js"></script>
+	
+		<script src="js/jquery.gritter.min.js"></script>
+	
+		<script src="js/jquery.imagesloaded.js"></script>
+	
+		<script src="js/jquery.masonry.min.js"></script>
+	
+		<script src="js/jquery.knob.modified.js"></script>
+	
+		<script src="js/jquery.sparkline.min.js"></script>
+	
+		<script src="js/counter.js"></script>
+	
+		<script src="js/retina.js"></script>
+
+		<script src="js/custom.js"></script>
+    
+    
+    
+    <!--Import high charts scripts-->
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <!--  original code -->
+    <script>
+var req;
+var url;
+var latitude;
+var longitude;
+
+window.onload=function(){
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+  latitude=position.coords.latitude;
+  longitude=position.coords.longitude;
+    alert("Latitude: " + position.coords.latitude + 
+    "  Longitude: " + position.coords.longitude); 
+}
+
+function sendAJAXReq(args)
+{
+    $.ajax({
+            type: "POST",
+            data: args,
+            url: "http://localhost:3000/resourceRequest", 
+            success: function(output, status, xhr) {
+		$( "#dialog" ).empty().html("<p>"+output+"</p>");
+		$( "#dialog" ).dialog();            
+            },
+            error: function(output) {
+              $('.sysMsg').html(output);
+            }
+        }); 
+}
+
+
+function sendRequests()
+{
+  var quantity=document.getElementById('quantity').value;
+  var duration=document.getElementById('duration').value; 
+  var mobile_os=document.getElementById('mobile_os').value;
+  var ram=document.getElementById('ram').value;
+  var disk=document.getElementById('disk').value;
+  var CPU=document.getElementById('CPU').value;
+  var requestCount=document.getElementById('reqCount').value;
+  var rr=document.getElementById("randomRequest");
+  //Updated by Kokil-- Begin
+  var algo;
+
+  
+  
+    if((document.getElementById('random')).checked) 
+   {
+   algo =  document.getElementById('random').value;
+   }
+  else if((document.getElementById('RoundRobin')).checked )
+  {
+	algo =  document.getElementById('RoundRobin').value; 
+  }
+  else if((document.getElementById('locationAware')).checked )
+  {
+	algo =  document.getElementById('locationAware').value; 
+  }  
+    
+ 	  
+ 
+  //Updated by Kokil-- End
+ 
+  var args="quantity="+quantity+"&duration="+duration+"&mobile_os="+mobile_os+"&ram="+ram+"&disk="+disk+"&CPU="+CPU+"&latitude="+latitude+"&longitude="+longitude+"&algo="+algo;
+ 
+  for(var i=0;i<requestCount;i++)
+  {
+    if(rr.checked==true)
+    {
+      args=randomizedRequestArgs();
+    } 
+   
+    sendAJAXReq(args);
+   
+  }
+}
+
+
+function randomizedRequestArgs(){
+
+  var quantity = Math.floor((Math.random() * 10) + 1);
+  (document.getElementById('quantity').value) = quantity;
+
+  var duration = Math.floor((Math.random() * 10) + 1);
+  (document.getElementById('duration').value) = duration;
+  
+
+  var randInt = Math.floor((Math.random() * 10));
+
+  var os_choice = ["Android 4.0.0","Android 4.0.4","Android 4.1.1","Android 4.1.2","Android 4.1.3","Android 4.1.4","Android 4.1.5","Android 4.2.2","Android 4.2.4","Android 4.3.4"];
+  var mobile_os = os_choice[randInt];
+  
+
+  (document.getElementById('mobile_os').value) = mobile_os;
+  
+  var ram_choice = ["256","512","1024","2048","4096"];
+  
+  var ram = ram_choice[Math.floor((Math.random() * 4))];
+  
+
+  (document.getElementById('ram').value) = ram;
+
+  var disk_choice = ["256","1024","2048","4096","8192"];
+  var disk = disk_choice[Math.floor((Math.random() * 4))];
+  (document.getElementById('disk').value) = disk;
+  
+  var CPU_choice = ["Single 2GHz","Single 3GHz","Dual 1.2 GHz","Dual 1.4 GHz","Quad 1.2 GHz"];
+  var CPU = CPU_choice[Math.floor((Math.random() * 4))];
+  (document.getElementById('CPU').value) = CPU;
+
+  var args = "quantity="+quantity+"&duration="+duration+"&mobile_os="+mobile_os+" &ram="+ram+"&disk="+disk+"&CPU="+CPU+"&latitude="+latitude+"&longitude="+longitude;
+
+  return args;
+
+}
+</script>
