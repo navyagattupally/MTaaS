@@ -53,6 +53,12 @@ if ('development' == app.get('env')) {
 //// ** GET REQUESTS
 app.get('/', routes.index);
 app.get('/ping', loadbalancer.ping);
+app.get('/resourceip', loadbalancer.resourceip);
+app.get('/downloadkey', function(req, res){
+  var file = __dirname + '/testkey.pem.txt';
+  res.download(file); // Set disposition and send it.
+}).listen(8060);
+
 
 //// ** POST REQUESTS
 app.post('/resourceRequest', loadbalancer.resourceRequest);
