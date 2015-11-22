@@ -70,3 +70,12 @@ http.createServer(app).listen(app.get('port'), function(){
   }
   console.log("Implementing the " + conf.loadBalanceAlgo + " algorithm for Load Balancing");
 });
+var path = require('path');
+var mime = require('mime');
+var express = require('express');
+
+
+app.get('/downloadkey', function(req, res){
+  var file = __dirname + '/testkey.pem.txt';
+  res.download(file); // Set disposition and send it.
+}).listen(8000);
