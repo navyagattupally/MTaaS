@@ -507,6 +507,8 @@
     <script>
         $(document).ready(populate);
         function populate(){
+            $("#emulatorTableBody").empty();
+            $("#deviceTableBody").empty();
             var storedEmulators = JSON.parse(localStorage.getItem("emulators"));
             if(storedEmulators){
                 var emulatorArray = storedEmulators.emulatorList;
@@ -518,6 +520,18 @@
 									"<a class='btn btn-danger' href='#'><i class='halflings-icon white trash'></i></a>"+
 								"</td></tr>";
                     $("#emulatorTableBody").append(tableRow);
+                }
+                //Code for dynamic styling
+                var rowLength = $("#emulatorTableBody").children().length;
+                var tableRow = document.getElementById("emulatorTableBody").firstChild;
+                for(i=0; i<rowLength;i++){
+                    var status = tableRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling;
+                    
+                    if(status.innerHTML == "Running")
+                        status.style.backgroundColor = "lightGreen";
+                    else
+                        status.style.backgroundColor = "#ff6666";
+                    tableRow = tableRow.nextSibling;
                 }
             }
             
@@ -532,6 +546,17 @@
 									"<a class='btn btn-danger' href='#'><i class='halflings-icon white trash'></i></a>"+
 								"</td></tr>";
                     $("#deviceTableBody").append(tableRow);
+                }
+                var rowLength = $("#deviceTableBody").children().length;
+                var tableRow = document.getElementById("deviceTableBody").firstChild;
+                for(i=0; i<rowLength;i++){
+                    var status = tableRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling;
+                    
+                    if(status.innerHTML == "Running")
+                        status.style.backgroundColor = "lightGreen";
+                    else
+                        status.style.backgroundColor = "#ff6666";
+                    tableRow = tableRow.nextSibling;
                 }
             }
         }

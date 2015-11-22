@@ -488,8 +488,8 @@
 								"</td></tr>";
                     $("#tableBody").append(tableRow);
                 }
+                //Code for dynamic styling
                 var rowLength = $("#tableBody").children().length;
-                alert(rowLength);
                 var tableRow = document.getElementById("tableBody").firstChild;
                 for(i=0; i<rowLength;i++){
                     var availability = tableRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling;
