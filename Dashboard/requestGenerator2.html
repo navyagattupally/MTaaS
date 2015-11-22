@@ -418,6 +418,7 @@ function sendRequests()
    
   }
   alert ("Success!!! You may uses the resource now. The charges are available for viewing in Billing section.");
+  redirectPage();
 }
 
 
@@ -540,6 +541,13 @@ function randomizedRequestArgs(){
  // alert (args);
   return args;
 
+}
+</script>
+<script>
+function redirectPage() {
+	
+	window.location.replace("billing.html");
+	
 }
 </script>	
 </body>
