@@ -474,6 +474,7 @@
     <script>
         $(document).ready(populate);
         function populate(){
+            $("#tableBody").empty();
             var storedHubs = JSON.parse(localStorage.getItem("hubs"));
             if(storedHubs){
                 var hubArray = storedHubs.hubList;
@@ -482,12 +483,24 @@
                                     "<td>"+hubArray[i]["IP Address"]+"</td><td>"+hubArray[i]["Max Devices"]+"</td>"+
                                     "<td>"+hubArray[i]["Availability"]+"</td><td>"+hubArray[i]["Assigned Server"]+"</td>"+
                                 "<td class='center'>"+
-									"<a class='btn btn-info' href='#'><i class='halflings-icon white edit'></i></a> "+
+									"<a class='btn btn-info' href='#'><i class='halflings-icon white edit'></i></a>"+
 									"<a class='btn btn-danger' href='#'><i class='halflings-icon white trash'></i></a>"+
 								"</td></tr>";
                     $("#tableBody").append(tableRow);
                 }
-            }
+                var rowLength = $("#tableBody").children().length;
+                alert(rowLength);
+                var tableRow = document.getElementById("tableBody").firstChild;
+                for(i=0; i<rowLength;i++){
+                    var availability = tableRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling;
+                    
+                    if(availability.innerHTML == "Available")
+                        availability.style.backgroundColor = "lightGreen";
+                    else
+                        availability.style.backgroundColor = "#ff6666";
+                    tableRow = tableRow.nextSibling;
+                }
+            }    
         }
     </script>
     <!-- end: JavaScript-->
