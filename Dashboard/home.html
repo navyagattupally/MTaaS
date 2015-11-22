@@ -311,6 +311,48 @@
     <script>
         function initialize(){
             
+            //Get Stored Users
+            var storedUsers = JSON.parse(localStorage.getItem("users"));
+            
+            //Initialize Users if not Already Initialized
+            if(!storedUsers){
+                //Object with User List
+                var users = {
+                    'userList': [
+                        {
+                            "Username": "admin",
+                            "Password": "admin",
+                            "Amount Due": 0,
+                            "Amount Owed": 0,
+                            "Access Type": "admin"
+                        },
+                        {
+                            "Username": "user1",
+                            "Password": "user1",
+                            "Amount Due": 0,
+                            "Amount Owed": 0,
+                            "Access Type": "regular"
+                        },
+                        {
+                            "Username": "user2",
+                            "Password": "user2",
+                            "Amount Due": 0,
+                            "Amount Owed": 0,
+                            "Access Type": "regular"
+                        },
+                        {
+                            "Username": "Test User",
+                            "Password": "Test User",
+                            "Amount Due": 0,
+                            "Amount Owed": 0,
+                            "Access Type": "regular"
+                        }
+                    ]
+                }
+                localStorage.setItem('users', JSON.stringify(users));
+                storedUsers = users;
+            }
+            
             //Get Stored Server List
             var storedServers = JSON.parse(localStorage.getItem("servers"));
             
@@ -330,7 +372,8 @@
                             'Availability': 'Available',
                             'no. of CPUs': 5,
                             'CPUs in use': 2,
-                            'RAM': 512
+                            'RAM': 512,
+                            'Created by': storedUsers.userList[0]["Username"]
                         },
                         {
                             'Server Name': 'Test Server 3',
@@ -342,7 +385,8 @@
                             'Availability': 'Unavailable',
                             'no. of CPUs': 3,
                             'CPUs in use': 1,
-                            'RAM': 256
+                            'RAM': 256,
+                            'Created by': storedUsers.userList[0]["Username"]
                         },
                         {
                             'Server Name': 'Test Server',
@@ -354,7 +398,8 @@
                             'Availability': 'Unavailable',
                             'no. of CPUs': 2,
                             'CPUs in use': 0,
-                            'RAM': 1024
+                            'RAM': 1024,
+                            'Created by': storedUsers.userList[0]["Username"]
                         },
                         {
                             'Server Name': 'Test Server 0',
@@ -366,7 +411,8 @@
                             'Availability': 'Unavailable',
                             'no. of CPUs': 5,
                             'CPUs in use': 1,
-                            'RAM': 2048
+                            'RAM': 2048,
+                            'Created by': storedUsers.userList[0]["Username"]
                         },
                         {
                             'Server Name': 'Test Server 5',
@@ -378,7 +424,8 @@
                             'Availability': 'Unavailable',
                             'no. of CPUs': 5,
                             'CPUs in use': 3,
-                            'RAM': 512
+                            'RAM': 512,
+                            'Created by': storedUsers.userList[0]["Username"]
                         }
                     ]
                 }
