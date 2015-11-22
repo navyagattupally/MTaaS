@@ -430,7 +430,7 @@
                 enabled: false
             },
             series: [{
-                name: 'Random data',
+                name: 'CPU Usage',
                 data: (function () {
                     // generate an array of random data
                     var data = [],
@@ -520,6 +520,7 @@
     <script>
         $(document).ready(populate);
         function populate(){
+            $("#tableBody").empty();
             var storedServers = JSON.parse(localStorage.getItem("servers"));
             if(storedServers){
                 var serverArray = storedServers.serverList;
@@ -529,12 +530,48 @@
                                     "<td>"+serverArray[i]["Status"]+"</td><td>"+serverArray[i]["Date Created"]+"</td>"+
                                     "<td>"+serverArray[i]["Availability"]+"</td>"+
                                 "<td class='center'>"+
-									"<a class='btn btn-info' href='#'><i class='halflings-icon off'></i></a> "+
-									"<a class='btn btn-danger' href='#'><i class='halflings-icon white trash'></i></a>"+
+									"<a class='btn btn-info' onclick = 'launchServer(this)' href='#'><i class='halflings-icon off'></i>"+
+                                    "</a><a class='btn btn-danger' href='#'><i class='halflings-icon white trash'></i></a>"+
 								"</td></tr>";
                     $("#tableBody").append(tableRow);
                 }
+                var rowLength = $("#tableBody").children().length;
+                var tableRow = document.getElementById("tableBody").firstChild;
+                for(i=0; i<rowLength;i++){
+                    var status = tableRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling;
+                    if(status.innerHTML == "Active")
+                        status.style.backgroundColor = "lightGreen";
+                    else
+                        status.style.backgroundColor = "#ff6666";
+                    tableRow = tableRow.nextSibling;
+                }
             }
+        }
+        
+        function launchServer(bt){
+            //Get Corresponding Server of Button That Caused Click
+            var serverName = bt.parentNode.parentNode.firstChild;
+            var status;
+            
+            var storedServers = JSON.parse(localStorage.getItem("servers"));
+            var serverArray = storedServers.serverList;
+            for(i=0; i<serverArray.length;i++){
+                if(serverName.innerHTML == serverArray[i]["Server Name"]){
+                    if(serverArray[i]["Status"] == "Inactive"){
+                        serverArray[i]["Status"] = "Active";
+                        serverArray[i]["Availability"] = "Available";
+                        status = "Active!";
+                    }
+                    else{
+                        serverArray[i]["Status"] = "Inactive";
+                        serverArray[i]["Availability"] = "Unavailable";
+                        status = "Inactive";
+                    }
+                }
+            }
+            localStorage.setItem("servers", JSON.stringify(storedServers));
+            populate();
+            alert(serverName.innerHTML + " is now " + status);
         }
     </script>
     <!-- end: JavaScript-->
