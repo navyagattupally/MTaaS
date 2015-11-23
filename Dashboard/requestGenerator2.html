@@ -136,6 +136,9 @@
 		    <div class="form ">
            <form type="form" method="POST" action="http://localhost:3000/resourceRequest">
    <h2> <b>Submit the specifications below for registering resources....</b></h2>
+   <br>
+ <input type="text"  placeholder="Enter your Email: " name="email" id='email'/>
+ <br>
    
   <select class="form"  id='resource' name="resource">   
                 <option>Select Resource Type</option>
@@ -366,20 +369,7 @@ function sendRequests()
 	algo =  document.getElementById('locationAware').value; 
   }  
     
- 
-   /** Script for making servers active
-   var storedServers = JSON.parse(localStorage.getItem("servers"));
-   
-  	    if (storedServers.serverList[4]["Status"]  == "Inactive"  )
-  	    {
-  	    	storedServers.serverList[i]["Status"]  = "Active";
-  	    	localStorage.setItem("servers", JSON.stringify(storedServers));
-  	    	
-  	    }
-  	    
-  	 }
-   //*/
-   
+    
  
   //Updated by Kokil-- End
  
@@ -421,18 +411,6 @@ function sendRequests()
   redirectPage();
 }
 
-
-/** Script for making servers available
- var storedServers = JSON.parse(localStorage.getItem("servers"));
- for(i=0; i<storedServers.serverList.length;i++){
-	    if (storedServers.serverList[i]["Availability"]  == "Unavailable"  )
-	    {
-	    	storedServers.serverList[i]["Availability"]  = "Available";
-	    	localStorage.setItem("servers", JSON.stringify(storedServers));
-	    	//break;
-	    }
-	 }
- */
  
 function updateServerbyRandom(){	
 	
@@ -457,23 +435,66 @@ function updateServerbyRandom(){
  /**
 function updateDevicebyRandom(){
 	//alert ("picked device");
+	 var storedDevices = JSON.parse(localStorage.getItem("devices"));
+	 var len = storedDevices.deviceList.length;
+	 var isAllocated = false;
+	 for(i=0; i<storedDevices.deviceList.length;i++){
+		while (!isAllocated){
+			var index = Math.floor((Math.random() * len) + 0);
+		    if (storedDevices.deviceList[index]["Availability"]  == "Available"  )
+		    {
+		    	storedDevices.deviceList[index]["Availability"]  = "Unavailable";
+		    	localStorage.setItem("devices", JSON.stringify(storedDevices));
+		    	isAllocated = true;
+		    	break;
+		    }	
+		}
+		
+	 }
 }
 
 function updateEmulatorbyRandom(){
 	alert ("picked emulator");
+	var storedEmulators = JSON.parse(localStorage.getItem("emulators"));
+	 var len = storedEmulators.emulatorList.length;
+	 var isAllocated = false;
+	 for(i=0; i<storedEmulators.emulatorList.length;i++){
+		while (!isAllocated){
+			var index = Math.floor((Math.random() * len) + 0);
+		    if (storedEmulators.emulatorList[index]["Availability"]  == "Available"  )
+		    {
+		    	storedEmulators.emulatorList[index]["Availability"]  = "Unavailable";
+		    	localStorage.setItem("emulators", JSON.stringify(storedEmulators));
+		    	isAllocated = true;
+		    	break;
+		    }	
+		}
+		
+	 }
+	
 }
 **/
 function updateServerbyRoundRobin(){	
   // alert ("here");
 	var storedServers = JSON.parse(localStorage.getItem("servers"));
 	 for(i=0; i<storedServers.serverList.length;i++){
-		 if (storedServers.serverList[i]["Availability"]  == "Available"  ) 
+		 if (storedServers.serverList[i]["Availability"]  == "Available" && storedServers.serverList[i]["Created by"] ==  "admin" ) 
 			 {
 			  storedServers.serverList[i]["Availability"]  = "Unavailable";
 		      localStorage.setItem("servers", JSON.stringify(storedServers));
 		      break;
 			 }
 	 }
+	
+	 for(i=0; i<storedServers.serverList.length;i++){
+		 if (storedServers.serverList[i]["Availability"]  == "Available" && storedServers.serverList[i]["Created by"] !=  "admin" ) 
+			 {
+			  storedServers.serverList[i]["Availability"]  = "Unavailable";
+		      localStorage.setItem("servers", JSON.stringify(storedServers));
+		      break;
+			 }
+	 }	 
+	 
 }
 
 function updateDevicebyRoundRobin(){	
