@@ -136,13 +136,14 @@
 				</li>
 				<li><a href="index2.html">Run Time Graph</a></li>
 			</ul>
-                
-            <div id="graph">
-            </div>
+            
             <div id="resources">
             <span id="popup1" style="display: inline float:left">No of resources:</span>    
             <span id="popup" style="display: inline width: 10px; height: 20px; border: 1px solid blue;"></span>
             </div>
+            <div id="graph">
+            </div>
+            
 			
 		</div><!--/fluid-row-->
 		
@@ -219,12 +220,271 @@
 </body>
 <!--<body>-->
 
+<!--Script For Syncing Local Storage-->
+<script>
+    var arrayOfLocations = []; //Good
+    var convertedLocations = []; //Good 
+    var serversByLocation = {}; //Good
+    var hubsByServers = {}; //Good
+    var emulatorNoByHub = {};
+    var deviceNoByHub = {};
+    
+    //$(document).ready(sync);
+    //Function to convert locations to d3 node format
+    function convertLocationsToD3(locations){
+        for(i=0;i<locations.length;i++){
+            var locationNode = {
+                "name": locations[i],
+                "parent": "Proxy",
+                "value": 0,
+                "type": "black",
+                "level": "orange",
+                "icon": "location.png"
+            }
+            convertedLocations.push(locationNode);
+        }
+    }
+    
+    //Function to convert server to d3 node format
+    function convertServerToD3(server){
+        var serverNode = {
+            "name": server["Server Name"],
+            "parent": "level 2:A",
+            "value": 0,
+            "type": "steelblue",
+            "icon": "server.png",
+            "level": "orange"
+        }
+        return serverNode;
+    }
+    
+    //Function to convert hub to d3 node format
+    function convertHubToD3(hub){
+        var hubNode = {
+            "name": hub["Hub Name"],
+            "parent": "Level 2: A",
+            "value": 0,
+            "type": "steelblue",
+            "icon": "hub.png",
+            "level": "red",
+            "children": [
+                {
+                    "name": "iOS",
+                    "parent": "Level 2: A",
+                    "value": 0,
+                    "type": "steelblue",
+                    "icon": "ios.png",
+                    "level": "red",
+                    "children": [
+                        {
+                            "name": "Virtual Device",
+                            "parent": "Level 2: A",
+                            "value": 0,
+                            "type": "steelblue",
+                            "icon": "phone.png",
+                            "level": "orange"
+                        },
+                        {
+                            "name": "Real Device",
+                            "parent": "Level 2: A",
+                            "value": 0,
+                            "type": "steelblue",
+                            "icon": "phone.png",
+                            "level": "orange"
+                        }
+                    ]
+                },
+                {
+                    "name": "Android",
+                    "parent": "Level 2: A",
+                    "value": 0,
+                    "type": "steelblue",
+                    "icon": "android.png",
+                    "level": "red",
+                    "children": [
+                        {
+                            "name": "Virtual Device",
+                            "parent": "Level 2: A",
+                            "value": 0,
+                            "type": "steelblue",
+                            "icon": "phone.png",
+                            "level": "orange"
+                        },
+                        {
+                            "name": "Real Device",
+                            "parent": "Level 2: A",
+                            "value": 0,
+                            "type": "steelblue",
+                            "icon": "phone.png",
+                            "level": "orange"
+                        }
+                    ]
+                },
+                {
+                    "name": "Windows",
+                    "parent": "Level 2: A",
+                    "value": 0,
+                    "type": "steelblue",
+                    "icon": "windows.png",
+                    "level": "red",
+                    "children": [
+                        {
+                            "name": "Virtual Device",
+                            "parent": "Level 2: A",
+                            "value": 0,
+                            "type": "steelblue",
+                            "icon": "phone.png",
+                            "level": "orange"
+                        },
+                        {
+                            "name": "Real Device",
+                            "parent": "Level 2: A",
+                            "value": 0,
+                            "type": "steelblue",
+                            "icon": "phone.png",
+                            "level": "orange"
+                        }
+                    ]
+                }
+            ]
+        }
+        return hubNode;
+    }
+    
+    function sync(){
+        var storedServers = JSON.parse(localStorage.getItem("servers"));
+        var serverArray = storedServers.serverList;
+        var storedHubs = JSON.parse(localStorage.getItem("hubs"));
+        var hubArray = storedHubs.hubList;
+        var storedEmulators = JSON.parse(localStorage.getItem("emulators"));
+        var emulatorArray = storedEmulators.emulatorList;
+        var storedDevices = JSON.parse(localStorage.getItem("devices"));
+        var deviceArray = storedDevices.deviceList;
+        
+        //Get and Store Distinct Locations in an Array
+        for(i=0;i<serverArray.length;i++){
+            if(arrayOfLocations.indexOf(serverArray[i]["Location"]) == -1)
+                arrayOfLocations.push(serverArray[i]["Location"]);
+        }
+        convertLocationsToD3(arrayOfLocations);
+        
+        //Populate 'serversByLocation' Object With Location as Keys and Array of Servers as Values
+        for(i=0;i<serverArray.length;i++){
+            var convertedServer = convertServerToD3(serverArray[i]);
+            var key = serverArray[i]["Location"];
+            if(!serversByLocation[key]){
+                serversByLocation[key] = [convertedServer];
+            }
+            else{
+                serversByLocation[key].push(convertedServer);
+            }
+        }
+        
+        //Populate 'hubsByServers' Object With Servers as Keys and Array of Hubs as Values
+        for(i=0;i<hubArray.length;i++){
+            var convertedHub = convertHubToD3(hubArray[i]);
+            var key = hubArray[i]["Assigned Server"];
+            if(hubArray[i]["Assigned Server"] != "None"){
+                if(!hubsByServers[key]){
+                    hubsByServers[key] = [convertedHub];
+                }
+                else
+                    hubsByServers[key].push(convertedHub);
+            }
+        }
+        
+        //Update Number of Virtual and Physical Devices with Each Hub
+        for(i in hubsByServers){
+            for(j=0;j<hubsByServers[i].length;j++){
+                
+                var androidEmu = 0;
+                var androidDev = 0;
+                var iOSEmu = 0;
+                var iOSDev = 0;
+                var winEmu = 0;
+                var winDev = 0;
+                var devEmuNumbers = {
+                    "androidEmu": androidEmu,
+                    "androidDev": androidDev,
+                    "iOSEmu": iOSEmu,
+                    "iOSDev": iOSDev,
+                    "winEmu": winEmu,
+                    "winDev": winDev
+                }
+                
+                //Calculate Number of Emulators For Each OS
+                for(k in emulatorArray){
+                    if(hubsByServers[i][j]["name"] == emulatorArray[k]["Assigned Hub"]){
+                        if(emulatorArray[k]["OS"] == "Android")
+                            devEmuNumbers["androidEmu"]++;
+                        if(emulatorArray[k]["OS"] == "iOS")
+                            devEmuNumbers["iOSEmu"]++;
+                        if(emulatorArray[k]["OS"] == "Windows")
+                            devEmuNumbers["winEmu"]++;
+                    }
+                }
+                //Calculate Number of Devices For Each OS
+                for(l in deviceArray){
+                   if(hubsByServers[i][j]["name"] == deviceArray[k]["Assigned Hub"]){
+                        if(emulatorArray[k]["OS"] == "Android")
+                            devEmuNumbers["androidDev"]++;
+                        if(emulatorArray[k]["OS"] == "iOS")
+                            devEmuNumbers["iOSDev"]++;
+                        if(emulatorArray[k]["OS"] == "Windows")
+                            devEmuNumbers["winDev"]++;
+                    } 
+                }
+                hubsByServers[i][j]["children"][0]["children"][0]["value"] = devEmuNumbers["iOSEmu"];
+                hubsByServers[i][j]["children"][0]["children"][1]["value"] = devEmuNumbers["iOSDev"];
+                hubsByServers[i][j]["children"][1]["children"][0]["value"] = devEmuNumbers["androidEmu"];
+                hubsByServers[i][j]["children"][1]["children"][1]["value"] = devEmuNumbers["androidDev"];
+                hubsByServers[i][j]["children"][2]["children"][0]["value"] = devEmuNumbers["winEmu"];
+                hubsByServers[i][j]["children"][2]["children"][1]["value"] = devEmuNumbers["winDev"];
+            }
+        }
+        
+        //Attach Hub Children to each Server
+        for(i in serversByLocation){
+            for(j=0;j<serversByLocation[i].length;j++){
+                for(k in hubsByServers){
+                    if(k == serversByLocation[i][j]["name"]){
+                        serversByLocation[i][j]["children"] = hubsByServers[k];
+                        serversByLocation[i][j]["value"] = serversByLocation[i][j]["children"].length;
+                    }
+                }
+            }
+        }
+        
+        //Attach Server Children to each Location
+        for(i in convertedLocations){
+            for(j in serversByLocation){
+                if(convertedLocations[i]["name"] == j){
+                    convertedLocations[i]["children"] = serversByLocation[j];
+                    convertedLocations[i]["value"] = convertedLocations[i]["children"].length;
+                }
+            }
+        }
+    }
+    
+</script>
 <!-- load the d3.js library --> 
 <script src="http://d3js.org/d3.v3.min.js"></script>
   
 <script>
-
+    
 var treeData = [
+    {
+        "name": "Proxy",
+        "parent": "null",
+        "value": 0,
+        "type": "black",
+        "level": "orange",
+        "icon": "proxy.png",
+        "children": convertedLocations
+    }
+]
+
+/*var treeData = [
   {
     "name": "Proxy",
     "parent": "null",
@@ -321,6 +581,14 @@ var treeData = [
             "type": "steelblue",
             "icon": "server.png",
             "level": "red"
+          },
+            {
+            "name": "Server #3",
+            "parent": "Level 2: A",
+            "value": 18,
+            "type": "steelblue",
+            "icon": "server.png",
+            "level": "red"
           }
         ]
       },
@@ -405,7 +673,7 @@ var treeData = [
 
     ]
   }
-];
+];*/
 
 // ************** Generate the tree diagram  *****************
 var margin = {top: 20, right: 50, bottom: 20, left: 50},
@@ -427,6 +695,7 @@ var svg = d3.select("#graph").append("svg")
   .attr("transform", 
         "translate(" + margin.left + "," + margin.top + ")");
 
+sync();
 root = treeData[0];
 update(root);
 
