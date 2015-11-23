@@ -126,9 +126,7 @@
 				</li>
 				<li><a href="requestGenerator2.html">Request Generator</a></li>
 			</ul>
-			
-			
-			
+					
                 
             <!--Beginning of Test Server Table-->    
 			
@@ -223,7 +221,7 @@
             <input type="radio" name="options" id="locationAware" value = "locationAware">Location Aware
         </label>
         <label class="btn btn-primary">
-            <input type="radio" name="options" id="honeybee" value = "HoneyBee"> Honey bee
+            <input type="radio" name="options" id="ant" value = "ant"> Ant Colony
         </label>
         <label class="btn btn-primary">
             <input type="radio" name="options" id="RoundRobin" value = "RoundRobin"> Round Robin
@@ -364,6 +362,10 @@ function sendRequests()
   {
 	algo =  document.getElementById('RoundRobin').value; 
   }
+  else if((document.getElementById('ant')).checked )
+  {
+	algo =  document.getElementById('ant').value; 
+  } 
   else if((document.getElementById('locationAware')).checked )
   {
 	algo =  document.getElementById('locationAware').value; 
@@ -397,9 +399,13 @@ function sendRequests()
 	  { 
 		  updateEmulatorbyRoundRobin();
 	  }
-	  else if(algo == "Random" && resource == "Test Server")
+	  else if(algo == "random" && resource == "Test Server")
 	  { 
 		  updateServerbyRandom();
+	  }
+	  else if(algo == "ant" && resource == "Test Server")
+	  { 
+		  updateServerbyAntColony();
 	  }
 	  else
 		  { }
@@ -411,28 +417,39 @@ function sendRequests()
   redirectPage();
 }
 
- 
-function updateServerbyRandom(){	
-	
-	 var storedServers = JSON.parse(localStorage.getItem("servers"));
-	 var len = storedServers.serverList.length;
-	 var isAllocated = false;
+
+function updateServerbyRandom(){
+	var storedServers = JSON.parse(localStorage.getItem("servers"));
 	 for(i=0; i<storedServers.serverList.length;i++){
-		while (!isAllocated){
-			var index = Math.floor((Math.random() * len) + 0);
-		    if (storedServers.serverList[index]["Availability"]  == "Available"  )
-		    {
-		    	storedServers.serverList[index]["Availability"]  = "Unavailable";
-		    	localStorage.setItem("servers", JSON.stringify(storedServers));
-		    	isAllocated = true;
-		    	break;
-		    }	
-		}
-		
+		 
+		 if (storedServers.serverList[i]["Availability"]  == "Available"  ) 
+			 {
+			  storedServers.serverList[i]["Availability"]  = "Unavailable";
+		      localStorage.setItem("servers", JSON.stringify(storedServers));
+		      break;
+			 }
+		// break;
 	 }
+	
+		 
 }
 
- /**
+function updateServerbyAntColony(){
+	var storedServers = JSON.parse(localStorage.getItem("servers"));
+	 for(i=0; i<storedServers.serverList.length;i++){
+		 
+		 if (storedServers.serverList[i]["Availability"]  == "Available" &&  storedServers.serverList[i]["RAM"]  > 511 ) 
+			 {
+			  storedServers.serverList[i]["Availability"]  = "Unavailable";
+		      localStorage.setItem("servers", JSON.stringify(storedServers));
+		      break;
+			 }
+		 }
+		 
+}
+
+
+/** 
 function updateDevicebyRandom(){
 	//alert ("picked device");
 	 var storedDevices = JSON.parse(localStorage.getItem("devices"));
@@ -564,6 +581,7 @@ function randomizedRequestArgs(){
 
 }
 </script>
+
 <script>
 function redirectPage() {
 	
