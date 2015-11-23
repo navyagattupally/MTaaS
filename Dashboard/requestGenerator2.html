@@ -413,7 +413,8 @@ function sendRequests()
     sendAJAXReq(args);
    
   }
-  alert ("Success!!! You may uses the resource now. The charges are available for viewing in Billing section.");
+  alert ("Success!!! You may uses the resource now. Plese check your email for accessing resource.");
+  register();
   redirectPage();
 }
 
@@ -588,6 +589,36 @@ function redirectPage() {
 	window.location.replace("billing.html");
 	
 }
-</script>	
+</script>
+<script>
+function register () {
+	//Get Stored registation invoices List
+    var storedRegistrationInvoices = JSON.parse(localStorage.getItem("registrationInvoices"));
+	// add registration 
+    var username = $("#email").val();
+    var resourcetype = $("#resource").val();
+    var count = $("#reqCount").val();
+    var DurationInHours = $("#duration").val();
+    var CPU = $("#CPU").val();
+    var OS =  $("#mobile_os").val();
+    var RAM = $("#ram").val();
+    var disk = $("#disk").val();
+        
+    var registration = {
+    		
+            'User Name': username,
+            'Resource_type_registered': resourcetype,
+            'Count': count,
+            'DurationInHours' : DurationInHours,
+            'CPU' : CPU,
+            'OS' : OS,
+            'RAM' : RAM,
+            'Disk' : disk,
+     };
+    
+    storedRegistrationInvoices.registrationInvoiceList.push(registration);
+    localStorage.setItem('registrationInvoices', JSON.stringify(storedRegistrationInvoices));
+}
+</script>
 </body>
 </html> 
