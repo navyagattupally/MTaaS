@@ -5,9 +5,7 @@ var url = require( "url" );
 var queryString = require( "querystring" );
 var fs = require("fs");
 var conf = (JSON.parse(fs.readFileSync("./config/conf.json", "utf8")));
-var random = require("random-js")(); // uses the nativeMath engine
-var value = Math.floor(Math.random() * (5 ) + 0);
-var vms = ["1.0.0.0","2.0.0.0","3.0.0.0","4.0.0.0","5.0.0.0"];
+
 //commented by Kokil , to pick algo from UI rather than conf file.
 //var loadBal=conf.loadBalanceAlgo;
 //var algo = require("../loadbalancers/"+loadBal);
@@ -59,8 +57,12 @@ exports.ping = function(req, res){
 };
 
 exports.resourceip = function(req, res){
+	
+var random = require("random-js")(); // uses the nativeMath engine
+var value = Math.floor(Math.random() * (5 ) + 0);
+var vms = ["54.213.242.182","54.213.238.146","54.213.238.127","54.213.242.182","54.213.252.190"];
 console.log("chosen vm : " + value);
-return res.send(vms[value]);	
+return res.send(vms[value]);
 }
 
 
