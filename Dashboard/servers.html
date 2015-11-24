@@ -121,6 +121,9 @@
 				<li><a href="servers.html">Test Servers</a></li>
 			</ul>
                 
+            <p><b>Note:</b> Resources with a * are donated resources</p>
+            <p><b>Note:</b> Resources with a ** are AWS resources</p>
+                
             <!--Beginning of Test Server Table-->    
 			<div class="row-fluid sortable">		
 				<div class="box span12">
@@ -521,7 +524,9 @@
         $(document).ready(populate);
         function populate(){
             $("#tableBody").empty();
+            //Pull data from local storage
             var storedServers = JSON.parse(localStorage.getItem("servers"));
+            
             if(storedServers){
                 var serverArray = storedServers.serverList;
                 for(i=0; i<serverArray.length; i++){

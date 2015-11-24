@@ -123,7 +123,7 @@
             
             <h2><b>Resources at a Glance</b></h2>
             <p>For more details on each resource type, visit the Servers, Hubs, and Device Pages</p>
-                
+            
             <!--Beginning of Google Charts-->
             <div id="piechart" style="width: 500px; height: 350px; display:in-line; float:left; border-right: solid 0px gray"></div>
             <div id="piechart1" style="width: 500px; height: 350px; display:in-line; float:left; border-right: solid 0px gray"></div>
@@ -309,8 +309,39 @@
     
     <!--Beginning of Script for LocalStorage-->
     <script>
+        var availableServers = 0;
+        var unavailableServers = 0;
+        var availableHubs = 0;
+        var unavailableHubs = 0;
+        var availableEmulators = 0;
+        var unavailableEmulators = 0;
+        var availableDevices = 0;
+        var unavailableDevices = 0;
+        var rServerIP1;
+        
+        $(document).ready(sendAJAXReq);
+        
+        function sendAJAXReq()
+        {
+            $.ajax({
+                    type: "GET",
+
+                    url: "http://54.213.242.182:3000/resourceip", 
+                    success: function(output, status, xhr) {
+                        //alert("VM IP: " + output);
+                        rServerIP1 = output;
+                        //initialize();
+                        //alert("Server IP From variable: " + rServerIP1);
+                    },
+                    error: function(output){
+                      $('.sysMsg').html(output);
+                    }
+            });
+        }
+        
         function initialize(){
             
+            //alert(rServerIP1);
             //Get Stored Users
             var storedUsers = JSON.parse(localStorage.getItem("users"));
             
@@ -402,32 +433,6 @@
                             'Created by': storedUsers.userList[0]["Username"]
                         },
                         {
-                            'Server Name': 'Test Server 0',
-                            'IP Address': '10.0.0.0',
-                            'Image Name': 'cirros-0.3.2x86_64-uec',
-                            'Location': 'USA',
-                            'Status': 'Inactive',
-                            'Date Created': new Date("9/18/2015"),
-                            'Availability': 'Unavailable',
-                            'no. of CPUs': 5,
-                            'CPUs in use': 1,
-                            'RAM': 2048,
-                            'Created by': storedUsers.userList[0]["Username"]
-                        },
-                        {
-                            'Server Name': 'Test Server 5',
-                            'IP Address': '10.0.0.5',
-                            'Image Name': 'cirros-0.3.2x86_64-uec',
-                            'Location': 'USA',
-                            'Status': 'Inactive',
-                            'Date Created': new Date("9/18/2015"),
-                            'Availability': 'Unavailable',
-                            'no. of CPUs': 5,
-                            'CPUs in use': 2,
-                            'RAM': 512,
-                            'Created by': storedUsers.userList[0]["Username"]
-                        },
-                        {
                             'Server Name': 'Test Server 6',
                             'IP Address': '10.0.0.6',
                             'Image Name': 'cirros-0.3.2x86_64-uec',
@@ -445,38 +450,12 @@
                             'IP Address': '10.0.0.8',
                             'Image Name': 'cirros-0.3.2x86_64-uec',
                             'Location': 'China',
-                            'Status': 'Inactive',
+                            'Status': 'Active',
                             'Date Created': new Date("9/18/2015"),
-                            'Availability': 'Unavailable',
+                            'Availability': 'Available',
                             'no. of CPUs': 5,
                             'CPUs in use': 3,
                             'RAM': 512,
-                            'Created by': storedUsers.userList[0]["Username"]
-                        },
-                        {
-                            'Server Name': 'Test Server 9',
-                            'IP Address': '10.0.0.9',
-                            'Image Name': 'cirros-0.3.2x86_64-uec',
-                            'Location': 'USA',
-                            'Status': 'Inactive',
-                            'Date Created': new Date("9/18/2015"),
-                            'Availability': 'Unavailable',
-                            'no. of CPUs': 5,
-                            'CPUs in use': 1,
-                            'RAM': 1024,
-                            'Created by': storedUsers.userList[0]["Username"]
-                        },
-                        {
-                            'Server Name': 'Test Server 10',
-                            'IP Address': '10.0.0.10',
-                            'Image Name': 'cirros-0.3.2x86_64-uec',
-                            'Location': 'USA',
-                            'Status': 'Inactive',
-                            'Date Created': new Date("9/25/2015"),
-                            'Availability': 'Unavailable',
-                            'no. of CPUs': 5,
-                            'CPUs in use': 2,
-                            'RAM': 2048,
                             'Created by': storedUsers.userList[0]["Username"]
                         },
                         {
@@ -484,9 +463,9 @@
                             'IP Address': '10.0.0.7',
                             'Image Name': 'cirros-0.3.2x86_64-uec',
                             'Location': 'India',
-                            'Status': 'Inactive',
+                            'Status': 'Active',
                             'Date Created': new Date("9/18/2015"),
-                            'Availability': 'Unavailable',
+                            'Availability': 'Available',
                             'no. of CPUs': 5,
                             'CPUs in use': 3,
                             'RAM': 1024,
@@ -503,6 +482,71 @@
                             'no. of CPUs': 5,
                             'CPUs in use': 1,
                             'RAM': 2048,
+                            'Created by': storedUsers.userList[0]["Username"]
+                        },
+                        {
+                            'Server Name': '**Test Server 20',
+                            'IP Address': '54.213.242.182',
+                            'Image Name': 'Ubuntu',
+                            'Location': 'USA',
+                            'Status': 'Active',
+                            'Date Created': new Date("11/24/2015"),
+                            'Availability': 'Available',
+                            'no. of CPUs': 1,
+                            'CPUs in use': 1,
+                            'RAM': 256000,
+                            'Created by': storedUsers.userList[0]["Username"]
+                        },
+                        {
+                            'Server Name': '**Test Server 21',
+                            'IP Address': '54.213.238.146',
+                            'Image Name': 'Linux',
+                            'Location': 'USA',
+                            'Status': 'Active',
+                            'Date Created': new Date("11/24/2015"),
+                            'Availability': 'Available',
+                            'no. of CPUs': 1,
+                            'CPUs in use': 1,
+                            'RAM': 500000,
+                            'Created by': storedUsers.userList[0]["Username"]
+                        },
+                        {
+                            'Server Name': '**Test Server 22',
+                            'IP Address': '54.213.242.127',
+                            'Image Name': 'Ubuntu',
+                            'Location': 'USA',
+                            'Status': 'Active',
+                            'Date Created': new Date("11/24/2015"),
+                            'Availability': 'Available',
+                            'no. of CPUs': 1,
+                            'CPUs in use': 1,
+                            'RAM': 512000,
+                            'Created by': storedUsers.userList[0]["Username"]
+                        },
+                        {
+                            'Server Name': '**Test Server 23',
+                            'IP Address': '54.213.242.182',
+                            'Image Name': 'Ubuntu',
+                            'Location': 'USA',
+                            'Status': 'Active',
+                            'Date Created': new Date("11/24/2015"),
+                            'Availability': 'Available',
+                            'no. of CPUs': 1,
+                            'CPUs in use': 1,
+                            'RAM': 256000,
+                            'Created by': storedUsers.userList[0]["Username"]
+                        },
+                        {
+                            'Server Name': '**Test Server 24',
+                            'IP Address': '54.213.252.190',
+                            'Image Name': 'Linux',
+                            'Location': 'USA',
+                            'Status': 'Active',
+                            'Date Created': new Date("11/24/2015"),
+                            'Availability': 'Available',
+                            'no. of CPUs': 1,
+                            'CPUs in use': 1,
+                            'RAM': 256000,
                             'Created by': storedUsers.userList[0]["Username"]
                         }
                     ]
@@ -736,18 +780,7 @@
     <!--Import Google Charts Scripts-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-        var availableServers = 0;
-        var unavailableServers = 0;
-        var availableHubs = 0;
-        var unavailableHubs = 0;
-        var availableEmulators = 0;
-        var unavailableEmulators = 0;
-        var availableDevices = 0;
-        var unavailableDevices = 0;
-        
-        
-        
-      google.load("visualization", "1", {packages:["corechart"]});
+        google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
         
