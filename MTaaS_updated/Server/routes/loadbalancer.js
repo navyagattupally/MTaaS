@@ -65,6 +65,15 @@ console.log("chosen vm : " + value);
 return res.send(vms[value]);
 }
 
+exports.resourcelist = function(req, res){
+	
+var random = require("random-js")(); // uses the nativeMath engine
+var value = Math.floor(Math.random() * (5 ) + 0);
+var vms = [{"Public IP":"54.213.242.182","Region":"N.California","Memory":"256GB","VMType":"Ubuntu","State":"Running"},{"IP":"54.213.238.146","Region":"Oregon","Memory":"500GB","VMType":"Linux","State":"Running"},{"IP":"54.213.238.127","Region":"N.California","Memory":"512GB","VMType":"Ubuntu","State":"Running"},{"IP":"54.213.242.182","Region":"Oregon","Memory":"256GB","VMType":"Ubuntu","State":"Running"},{"IP":"54.213.252.190","Region":"Virginia","Memory":"512GB","VMType":"Linux","State":"Running"}];
+console.log("chosen vm : " + vms);
+return res.send(vms);
+}
+
 
 exports.resourceRequest = function(req, res){
 		

@@ -59,6 +59,7 @@ app.get('/downloadkey', function(req, res){
   res.download(file); // Set disposition and send it.
 }).listen(8060);
 app.get('/sendEmail/:email',loadbalancer.sendEmail);
+app.get('/resourcelist',loadbalancer.resourcelist);
 
 
 
