@@ -21,11 +21,7 @@
 	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link id="base-style" href="css/style.css" rel="stylesheet">
 	<link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Open
-
-+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' 
-
-type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 	<!-- end: CSS -->
 	
 
@@ -54,9 +50,7 @@ type='text/css'>
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container-fluid">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-
-
-nav.nav-collapse">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -80,9 +74,7 @@ nav.nav-collapse">
  									<span>Account Settings</span>
 								</li>
 								<li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i> 
-
-Logout</a></li>
+								<li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -104,24 +96,12 @@ Logout</a></li>
 					<ul class="nav nav-tabs nav-stacked main-menu">
                         <li><a href="home.html"><i class="icon-home"></i><span class="hidden-tablet">Dashboard Home</span></a></li>
                         <li><a href="servers.html"><i class="icon-hdd"></i><span class="hidden-tablet">Test Servers</span></a></li>
-                        <li><a href="hubs.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Test 
-
-Hubs</span></a></li>
-                        <li><a href="devices.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Virtual and Physical 
-
-Devices</span></a></li>
-                         <li><a href="requestGenerator2.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Request 
-
-Generator</span></a></li>
-                        <li><a href="index2.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Run Time 
-
-Graph</span></a></li>
-                         <li><a href="billing.html"><i class="icon-align-justify"></i><span class="hidden-
-
-tablet">Billing</span></a></li>
-                        <li><a href="externalResources.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Resource 
-
-Donation</span></a></li>
+                        <li><a href="hubs.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Test Hubs</span></a></li>
+                        <li><a href="devices.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Virtual and Physical Devices</span></a></li>
+                         <li><a href="requestGenerator2.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Request Generator</span></a></li>
+                        <li><a href="index2.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Run Time Graph</span></a></li>
+                         <li><a href="billing.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Billing</span></a></li>
+                        <li><a href="externalResources.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Resource Donation</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -130,9 +110,7 @@ Donation</span></a></li>
 			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
-					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" 
-
-target="_blank">JavaScript</a> enabled to use this site.</p>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
 			</noscript>
 			
@@ -360,26 +338,7 @@ function sendAJAXReq(args)
             }
         }); 
 }
-function downloadKey() {
-	
-}
 
-function sendAJAXReqforEMail(email)
-{
-    $.ajax({
-            type: "GET",
-            data: email,
-           // url: "http://54.213.242.182:3000/sendEmail?email="+email,
-        	url: "http://localhost:8002/sendEmail",
-        	//url: "http://54.213.242.182:3000/sendEmail?kokilmishra@gmail.com",
-            success: function(output, status, xhr) {
-             // alert("message sent :" + output);              
-            },
-            error: function(output) {
-              $('.sysMsg').html(output);
-            }
-        }); 
-}
 
 function sendRequests()
 {
@@ -416,9 +375,7 @@ function sendRequests()
  
   //Updated by Kokil-- End
  
-  var args="quantity="+quantity+"&duration="+duration+"&mobile_os="+mobile_os+"&ram="+ram+"&disk="+disk+"&CPU="+CPU
-
-+"&latitude="+latitude+"&longitude="+longitude+"&algo="+algo;
+  var args="quantity="+quantity+"&duration="+duration+"&mobile_os="+mobile_os+"&ram="+ram+"&disk="+disk+"&CPU="+CPU+"&latitude="+latitude+"&longitude="+longitude+"&algo="+algo;
  
   for(var i=0;i<requestCount;i++)
   {
@@ -453,31 +410,11 @@ function sendRequests()
 	  else
 		  { }
    //alert("now args :" +args );
+   
     sendAJAXReq(args);
    
   }
-  var email = $("#email").val();
-  email = JSON.stringify(email); 
- // alert ("email :" + email);
- /** var data = {
-		    
-		    email: $("#email").val()
-		    
-		};
-  $.ajax({
-	    type: "POST",
-	   // url: "http://localhost:3000/sendEmail/{email}",
-	    url:"http://54.213.242.182:3000/sendEmail/kokilmishra@gmail.com",
-	    data: data,
-	    success: function(){
-	        $('.success').fadeIn(1000);
-	    }
-	}); **/
-	//var message = "hi";
-//	sendAJAXReqforEMail(message);
- sendAJAXReqforEMail(email);
-  alert ("Success!!! You may uses the resource now. Plese check your email for accessing resource.");
- 
+  alert ("Success!!! You may uses the resource now. The charges are available for viewing in Billing section.");
   register();
   redirectPage();
 }
@@ -560,9 +497,7 @@ function updateServerbyRoundRobin(){
   // alert ("here");
 	var storedServers = JSON.parse(localStorage.getItem("servers"));
 	 for(i=0; i<storedServers.serverList.length;i++){
-		 if (storedServers.serverList[i]["Availability"]  == "Available" && storedServers.serverList[i]["Created by"] ==  
-
-"admin" ) 
+		 if (storedServers.serverList[i]["Availability"]  == "Available" && storedServers.serverList[i]["Created by"] ==  "admin" ) 
 			 {
 			  storedServers.serverList[i]["Availability"]  = "Unavailable";
 		      localStorage.setItem("servers", JSON.stringify(storedServers));
@@ -571,9 +506,7 @@ function updateServerbyRoundRobin(){
 	 }
 	
 	 for(i=0; i<storedServers.serverList.length;i++){
-		 if (storedServers.serverList[i]["Availability"]  == "Available" && storedServers.serverList[i]["Created by"] !=  
-
-"admin" ) 
+		 if (storedServers.serverList[i]["Availability"]  == "Available" && storedServers.serverList[i]["Created by"] !=  "admin" ) 
 			 {
 			  storedServers.serverList[i]["Availability"]  = "Unavailable";
 		      localStorage.setItem("servers", JSON.stringify(storedServers));
@@ -619,9 +552,7 @@ function randomizedRequestArgs(){
 
   var randInt = Math.floor((Math.random() * 9));
 
-  var os_choice = ["Android 4.0.0","Android 4.0.4","Android 4.1.1","Android 4.1.2","Android 4.1.3","Android 4.1.4","Android 
-
-4.1.5","Android 4.2.2","Android 4.2.4","Android 4.3.4"];
+  var os_choice = ["Android 4.0.0","Android 4.0.4","Android 4.1.1","Android 4.1.2","Android 4.1.3","Android 4.1.4","Android 4.1.5","Android 4.2.2","Android 4.2.4","Android 4.3.4"];
   var mobile_os = os_choice[randInt];
   
 
@@ -643,13 +574,9 @@ function randomizedRequestArgs(){
   //(document.getElementById('CPU').value) = CPU;
  //  alert (CPU);
    
-  var args = "quantity="+quantity+"&duration="+duration+"&mobile_os="+mobile_os+" &ram="+ram+"&disk="+disk+"&CPU="+CPU
-
-+"&latitude="+latitude+"&longitude="+longitude+"&algo="+algo;
+  var args = "quantity="+quantity+"&duration="+duration+"&mobile_os="+mobile_os+" &ram="+ram+"&disk="+disk+"&CPU="+CPU+"&latitude="+latitude+"&longitude="+longitude+"&algo="+algo;
   
- // var args = "quantity="+quantity+"&duration="+duration+"&mobile_os="+mobile_os+"&ram="+ram+"&disk="+disk+"&CPU="+CPU
-
-+"&algo="+algo;
+ // var args = "quantity="+quantity+"&duration="+duration+"&mobile_os="+mobile_os+"&ram="+ram+"&disk="+disk+"&CPU="+CPU+"&algo="+algo;
  // var args = "quantity="+quantity+"&duration="+duration+"&x="+x;
  // alert (args);
   return args;
@@ -663,7 +590,7 @@ function redirectPage() {
 	window.location.replace("billing.html");
 	
 }
-</script>
+</script>	
 <script>
 function register () {
 	//Get Stored registation invoices List
