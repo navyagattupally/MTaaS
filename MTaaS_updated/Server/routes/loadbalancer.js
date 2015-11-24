@@ -24,7 +24,10 @@ var transporter = nodemailer.createTransport({
 
 // send mail with defined transport object
 exports.sendEmail = function(req,res){
-
+var random = require("random-js")(); // uses the nativeMath engine
+var value = Math.floor(Math.random() * (5 ) + 0);
+var vms = ["54.213.242.182","54.213.238.146","54.213.238.127","54.213.242.182","54.213.252.190"];
+console.log("chosen vm : " + value);
 	var request = require('request');
     var email=req.params.email;
 
