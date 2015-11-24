@@ -759,7 +759,9 @@
         ]);
 
         var options = {
-          title: 'Server Availability'
+          title: 'Server Availability',
+          colors: ["green", "gray"],
+            pieHole: 0.2
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -773,7 +775,9 @@
         ]);
 
         var options = {
-          title: 'Hub Availability'
+          title: 'Hub Availability',
+            colors: ["green", "gray"],
+            pieHole: 0.2
         };
 
         var chart1 = new google.visualization.PieChart(document.getElementById('piechart1'));
@@ -787,7 +791,9 @@
         ]);
 
         var options = {
-          title: 'Emulator Availability'
+          title: 'Emulator Availability',
+            colors: ["green", "gray"],
+            pieHole: 0.2
         };
 
         var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
@@ -801,7 +807,9 @@
         ]);
 
         var options = {
-          title: 'Physical Device Availability'
+          title: 'Physical Device Availability',
+            colors: ["green", "gray"],
+            pieHole: 0.2
         };
 
         var chart3 = new google.visualization.PieChart(document.getElementById('piechart3'));
