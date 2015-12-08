@@ -38,6 +38,25 @@
 	<!-- end: Favicon -->
 	
 	<style>
+        h2{margin-left: 27%}
+        #serverButton{
+            width: 55%;
+            height: 100px;
+            display: inline;
+            margin-left: 25%
+        }
+        #hubButton{
+            width: 55%;
+            height: 100px;
+            display: block;
+            margin-left: 25%
+        }
+        #deviceButton{
+            width: 55%;
+            height: 100px;
+            display: block;
+            margin-left: 25%
+        }
         input{width: 50%}
     </style>
 		
@@ -125,92 +144,157 @@
             
                     <h2><b>Feeling Generous?... Add Your Resources to our Resource Pool</b></h2>
                     <br/>
-                    <!--Beginning of Server Donations-->
-                    <a data-toggle="collapse" data-target="#sForms"><h4>Server Donations</h4></a>
-                    <div id="sForms">
-                    <form role="form" id="sForm">
-                    <div class="form-group">
-                        <label for="sName">Server Name:</label>
-                        <input type="text" class="form-control" id="sName" placeholder="Enter Server Name">
+                    <br/>
+                    <br/>
+                    <div>
+                        <!--<i class="halflings-icon plus"</i>-->
+                        <button id = "serverButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#serverModal">Server Donation</button>
                     </div>
-                    <div class="form-group">
-                      <label for="ip">IP Address/URL:</label>
-                      <input type="text" class="form-control" id="ip" placeholder="Enter IP Address/URL">
+                    <br/>
+                    <br/>
+                    <button id = "hubButton" type="button" class="btn btn-success" data-toggle="modal" data-target="#hubModal">Hub Donation</button>
+                    <br/>
+                    <br/>
+                    <button id = "deviceButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#deviceModal">Device Donation</button>
+                    <br/>
+                    <br/>
+                    
+                    <!-- Server Modal -->
+                  <div class="modal fade" id="serverModal" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Donate a Server</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" id="sForm">
+                            <div class="form-group">
+                                <label for="sName">Server Name:</label>
+                                <input type="text" class="form-control" id="sName" placeholder="Enter Server Name">
+                            </div>
+                            <div class="form-group">
+                              <label for="ip">IP Address/URL:</label>
+                              <input type="text" class="form-control" id="ip" placeholder="Enter IP Address/URL">
+                            </div>
+                            <div class="form-group">
+                              <label for="iName">Image Name:</label>
+                              <input type="text" class="form-control" id="iName" placeholder="Enter Image Name">
+                            </div>
+                            <div class="form-group">
+                              <label for="location">Location:</label>
+                              <input type="text" class="form-control" id="location" placeholder="Enter Location">
+                            </div>
+                            <div class="form-group">
+                              <label for="CPUs">No. of CPUs:</label>
+                              <input type="text" class="form-control" id="CPUs" placeholder="Enter no. of CPUs">
+                            </div>
+                            <div class="form-group">
+                              <label for="RAM">RAM:</label>
+                              <input type="text" class="form-control" id="RAM" placeholder="Enter RAM">
+                            </div>
+                            <button type="submit" class="btn btn-default" onclick="addServer()">Submit</button>
+                          </form>  
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+
                     </div>
-                    <div class="form-group">
-                      <label for="iName">Image Name:</label>
-                      <input type="text" class="form-control" id="iName" placeholder="Enter Image Name">
+                  </div>
+                
+                <!-- Hub Modal -->
+                  <div class="modal fade" id="hubModal" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Donate a Hub</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form">
+                            <div class="form-group">
+                                <label for="hID">ID:</label>
+                                <input type="text" class="form-control" id="hID" placeholder="Enter Hub ID">
+                            </div>
+                            <div class="form-group">
+                                <label for="hName">Hub Name:</label>
+                                <input type="text" class="form-control" id="hName" placeholder="Enter Hub Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="hIP">Hub IP Address:</label>
+                                <input type="text" class="form-control" id="hIP" placeholder="Enter Hub IP Address">
+                            </div>
+                            <div class="form-group">
+                                <label for="hDevices">Max no. of Devices:</label>
+                                <input type="text" class="form-control" id="hDevices" placeholder="Enter Max no. of Devices">
+                            </div>
+                            <button type="submit" class="btn btn-default" onclick="addHub()">Submit</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+
                     </div>
-                    <div class="form-group">
-                      <label for="location">Location:</label>
-                      <input type="text" class="form-control" id="location" placeholder="Enter Location">
+                  </div>
+                
+                    <!-- Device Modal -->
+                  <div class="modal fade" id="deviceModal" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Donate a Device</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="from">
+                            <div class="form-group">
+                                <label for="dName">Device Name:</label>
+                                <input type="text" class="form-control" id="dName" placeholder="Enter Device Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="dOS">OS:</label>
+                                <select class="form-control" id="dOS">
+                                    <option>Android</option>
+                                    <option>iOS</option>
+                                    <option>Windows Phone</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dVersion">OS Version:</label>
+                                <input type="text" class="form-control" id="dVersion" placeholder="Enter OS Version">
+                            </div>
+                            <div class="form-group">
+                                <label for="dRAM">RAM:</label>
+                                <input type="text" class="form-control" id="dRAM" placeholder="Enter Device RAM">
+                            </div>
+                            <div class="form-group">
+                                <label for="dType">Device Type:</label>
+                                <select class="form-control" id="dType">
+                                    <option>Virtual</option>
+                                    <option>Real</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-default" onclick="addDevice()">Submit</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+
                     </div>
-                    <div class="form-group">
-                      <label for="CPUs">No. of CPUs:</label>
-                      <input type="text" class="form-control" id="CPUs" placeholder="Enter no. of CPUs">
-                    </div>
-                    <div class="form-group">
-                      <label for="RAM">RAM:</label>
-                      <input type="text" class="form-control" id="RAM" placeholder="Enter RAM">
-                    </div>
-                    <button type="submit" class="btn btn-default" onclick="addServer()">Submit</button>
-                  </form>
-                </div>
-                <br/>
-            <!--Beginning of Hub Donations-->
-            <h4>Hub Donations</h4>
-                <form role="form">
-                    <div class="form-group">
-                        <label for="hID">ID:</label>
-                        <input type="text" class="form-control" id="hID" placeholder="Enter Hub ID">
-                    </div>
-                    <div class="form-group">
-                        <label for="hName">Hub Name:</label>
-                        <input type="text" class="form-control" id="hName" placeholder="Enter Hub Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="hIP">Hub IP Address:</label>
-                        <input type="text" class="form-control" id="hIP" placeholder="Enter Hub IP Address">
-                    </div>
-                    <div class="form-group">
-                        <label for="hDevices">Max no. of Devices:</label>
-                        <input type="text" class="form-control" id="hDevices" placeholder="Enter Max no. of Devices">
-                    </div>
-                    <button type="submit" class="btn btn-default" onclick="addHub()">Submit</button>
-                </form>
-                <br/>
-            <!--Beginning of Device Donations-->
-            <h4>Device Donations</h4>
-                <form role="from">
-                    <div class="form-group">
-                        <label for="dName">Device Name:</label>
-                        <input type="text" class="form-control" id="dName" placeholder="Enter Device Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="dOS">OS:</label>
-                        <select class="form-control" id="dOS">
-                            <option>Android</option>
-                            <option>iOS</option>
-                            <option>Windows Phone</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="dVersion">OS Version:</label>
-                        <input type="text" class="form-control" id="dVersion" placeholder="Enter OS Version">
-                    </div>
-                    <div class="form-group">
-                        <label for="dRAM">RAM:</label>
-                        <input type="text" class="form-control" id="dRAM" placeholder="Enter Device RAM">
-                    </div>
-                    <div class="form-group">
-                        <label for="dType">Device Type:</label>
-                        <select class="form-control" id="dType">
-                            <option>Virtual</option>
-                            <option>Real</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-default" onclick="addDevice()">Submit</button>
-                </form>
+                  </div>
+                
 			</div><!--/.fluid-container-->
 	       <!-- end: Content -->
 		</div><!--/#content.span10-->
@@ -239,26 +323,19 @@
 	</div>
 	<div class="clearfix"></div>
 	
-	<footer>
-
-		<p>
-			<span style="text-align:left;float:left">&copy; 2013 <a href="http://themifycloud.com/downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">JANUX Responsive Dashboard</a></span>
-			
-		</p>
-
-	</footer>
 	
 	<!-- start: JavaScript-->
-    <!--<script src="js/jquery-1.9.1.min.js"></script>-->
+    <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/jquery-migrate-1.0.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 	
-		<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
+		<!--<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
 	
 		<script src="js/jquery.ui.touch-punch.js"></script>
 	
 		<script src="js/modernizr.js"></script>
 	
-		<script src="js/bootstrap.min.js"></script>
+		
 	
 		<script src="js/jquery.cookie.js"></script>
 	
@@ -267,8 +344,9 @@
 		<script src='js/jquery.dataTables.min.js'></script>
 
 		<script src="js/excanvas.js"></script>
-	<!--<script src="js/jquery.flot.js"></script>-->
-	<!--<script src="js/jquery.flot.pie.js"></script>-->
+	
+    <!--<script src="js/jquery.flot.js"></script>
+	<!--<script src="js/jquery.flot.pie.js"></script>
 	<script src="js/jquery.flot.stack.js"></script>
 	<script src="js/jquery.flot.resize.min.js"></script>
 	
@@ -302,7 +380,7 @@
 	
 		<script src="js/retina.js"></script>
 
-		<script src="js/custom.js"></script>
+		<script src="js/custom.js"></script>-->
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     

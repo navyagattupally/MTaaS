@@ -126,7 +126,7 @@ label.error {
                         <li><a href="devices.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Virtual and Physical Devices</span></a></li>
                          <li><a href="requestGenerator2.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Request Generator</span></a></li>
                         <li><a href="index2.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Run Time Graph</span></a></li>
-                         <li><a href="invoice2.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Billing</span></a></li>
+                         <li><a href="billing.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Billing</span></a></li>
                         <li><a href="externalResources.html"><i class="icon-align-justify"></i><span class="hidden-tablet">Resource Donation</span></a></li>
 					</ul>
 				</div>
@@ -150,7 +150,7 @@ label.error {
 					<a href="home.html">Home</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="invoice2.html">Billing</a></li>
+				<li><a href="billing.html">Billing</a></li>
 			</ul>
 			
 		<!--  </div><!--/fluid-row-->
@@ -181,12 +181,12 @@ label.error {
                         <br>One Washington Square
                         <br>San Jose, CA 95112
                         <br>Phone: 1 (898) 123-4567
-                        <br>Email: admin.com
+                        <br>Email: mtaasservice@gmail.com
                     </address>
                 </div>
                 
                 <div class="col-sm-4 invoice-col">
-                    <b>Invoice #007612</b>
+                    <b id="#invoice">Invoice </b>
                     <br>
                     <br>
                     <b>Order ID:</b> 4F3S8J
@@ -201,19 +201,20 @@ label.error {
 												<!-- <table  border = 1 align = "right"> -->
                                                     <thead>	
                                                         <tr>
+                                                            <th>Username</th>
                                                             <th>Resource Type</th>
 															<th>Number of Request</th>
-                                                            <th>Duration used </th>                                                            
-                                                            <th>Number of Instance</th>
+                                                            <th>Duration used (In Hours)</th>                                                                                                           <th>RAM</th>
                                                             
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td><input type="text" size="10px" id ="res" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
-                                                          <td><input type="text" size=10px id ="noreq" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
-                                                            <td><input type="text" size=10px id ="dur" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
-															 <td><input type="text" size=10 id ="ins" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
+                                                            <td><input type="text" size="10px" id ="username" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
+                                                          <td><input type="text" size=10px id ="res" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
+                                                            <td><input type="text" size=10px id ="noreq" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
+															 <td><input type="text" size=10 id ="dur" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
+                                                            <td><input type="text" size=10 id ="ram" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
                                                             
                                                             </td>
                                                             
@@ -245,16 +246,16 @@ label.error {
                         <tbody>
                             <tr>
                                 <th style="width:50%">Subtotal:</th>
-                                <td><input type="text" id="tot" style="border: 0px;background-color: #FFFFFF;" readonly=true value=""></p></td>
+                                <td><input type="text" id="tot" style="border: 0px;background-color: #FFFFFF;" readonly=true value=""></td>
                             </tr>
                             <tr>
                                 <th>Tax (10%)</th>
-                                 <td><input type="text" id ="tax" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
+                                 <td><input type="text" id ="tax" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></td>
                             </tr>
 
                             <tr>
                                 <th>Total:</th>
-                                <td><input type="text" id="subtot" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
+                                <td><input type="text" id="subtot" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""</td>
                             </tr>
                         </tbody>
                     </table>
@@ -267,7 +268,8 @@ label.error {
                 </div>
 <!-- start: JavaScript-->
 <!--<script src="js/jquery-1.9.1.min.js"></script>-->
-    
+
+
 <script>
 //Updated by Saif-- Begin
 function bill(){
@@ -278,48 +280,48 @@ function bill(){
   var disk = localStorage.getItem("disk");
   var CPU = localStorage.getItem("CPU");
   var requestCount = localStorage.getItem("requestCount");*/
+    var invoice = JSON.parse(localStorage.getItem("registrationInvoices"));
+    var invoiceArray = invoice["registrationInvoiceList"]
+    var lastInvoice = invoiceArray[invoiceArray.length-1];
   
-  //alert("Iam inside");
  // var reginvoice = localStorage.getItem("registrationInvoices");
- // alert(reginvoice);
-  var res =  document.getElementById("res");
+  /*var res =  document.getElementById("res");
   var ins =  document.getElementById("ins");
   var dur =  document.getElementById("dur");
-  var noreq =  document.getElementById("noreq");
-  res ="Server";
+  var noreq =  document.getElementById("noreq");*/
+  /*res ="Server";
   ins = 3;
   dur =4;
-  noreq=2;
- document.getElementById("res").value= res;
- document.getElementById("ins").value = ins;
- document.getElementById("dur").value = dur;
- document.getElementById("noreq").value = noreq;
+  noreq=2;*/
+ 
+ document.getElementById("username").value= lastInvoice["User Name"];
+ document.getElementById("res").value= lastInvoice["Resource_type_registered"];
+ document.getElementById("noreq").value = 1;
+ document.getElementById("dur").value = lastInvoice["DurationInHours"];
+ document.getElementById("ram").value = 512000;
+ 
+ 
   
-  var total =0;
+  var total =100;
   var tax =0;
   
-    total = calculateCPU(res,total);
-  total = calculateDuration(dur,total);
-  total = total * ins;  
+    //total = calculateCPU(res,total);
+  //total = calculateDuration(dur,total);
+
   total = total * noreq;	
-  document.getElementById("tot").value= "$"+total;
+  document.getElementById("tot").value= "$100";
  // alert("Your Total is " +total);
   
-  tax = (0.10* total );
-  document.getElementById("tax").value= "$"+parseFloat(tax).toFixed(2);;
+  tax = 0.10* total;
+  document.getElementById("tax").value= "$10";
   
   total = total+tax;
-  document.getElementById("subtot").value= "$"+parseFloat(total).toFixed(2);;;
+  document.getElementById("subtot").value= "$110";
   
   
   
   
   }
-  
-  
-  
-   
-
 function calculateCPU(CPU,total){
 //alert(CPU);
 var cpucost =0;
@@ -357,9 +359,6 @@ var cost =0;
 // document.getElementById("durationcost").value = cost;
  return total;
 }
-
-
-
 </script>	
 </body>
 </html>  

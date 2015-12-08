@@ -731,40 +731,40 @@
             var storedRegistrationInvoices = JSON.parse(localStorage.getItem("registrationInvoices"));
 
             //Initialize invoice for registration  List if not Already Initialized
-                        if(!storedRegistrationInvoices){
-                            //Object With Hub List
-                            var registrationInvoices = {
-                                'registrationInvoiceList':
-                                [
-                                    {
-                                       
-                                        'User Name': storedUsers.userList[0]["Username"],
-                                        'Resource_type_registered': 'Server',
-                                        'Count': 10,
-                                        'DurationInHours' : 5,
-                                        'CPU' : 'Single 2 GHz',
-                                        'OS' : 'Android 4.0.0',
-                                        'RAM' : '256',
-                                        'Disk' : '1024',
-                                        
-                                    },                       
-                                    {
-                                        
-                                        'User Name': storedUsers.userList[0]["Username"],
-                                        'Resource_type_registered': 'Emulator',
-                                        'Count': 3,
-                                        'DurationInHours' : 5,
-                                        'CPU' : 'Single 2 GHz',
-                                        'OS' : 'Android 4.0.0',
-                                        'RAM' : '256',
-                                        'Disk' : '1024',
-                                        
-                                    }                       
-                                ]
-                            }
-                            localStorage.setItem('registrationInvoices', JSON.stringify(registrationInvoices));
-                            storedRegistrationInvoices = registrationInvoices;
-                        }//End of resource registered invoice Initialization       
+            if(!storedRegistrationInvoices){
+                //Object With Hub List
+                var registrationInvoices = {
+                    'registrationInvoiceList':
+                    [
+                        {
+
+                            'User Name': storedUsers.userList[0]["Username"],
+                            'Resource_type_registered': 'Server',
+                            'Count': 10,
+                            'DurationInHours' : 5,
+                            'CPU' : 'Single 2 GHz',
+                            'OS' : 'Android 4.0.0',
+                            'RAM' : '256',
+                            'Disk' : '1024',
+
+                        },                       
+                        {
+
+                            'User Name': storedUsers.userList[0]["Username"],
+                            'Resource_type_registered': 'Emulator',
+                            'Count': 3,
+                            'DurationInHours' : 5,
+                            'CPU' : 'Single 2 GHz',
+                            'OS' : 'Android 4.0.0',
+                            'RAM' : '256',
+                            'Disk' : '1024',
+
+                        }                       
+                    ]
+                }
+                localStorage.setItem('registrationInvoices', JSON.stringify(registrationInvoices));
+                storedRegistrationInvoices = registrationInvoices;
+            }//End of resource registered invoice Initialization       
                  
               
             //Get Number of Available and Unavialable Devices for Google Charts

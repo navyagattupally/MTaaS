@@ -36,7 +36,11 @@
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
-	
+	<style>
+        .rad{
+            margin-left: -10px;
+        }
+    </style>
 		
 		
 		
@@ -120,9 +124,12 @@
 				</li>
 				<li><a href="servers.html">Test Servers</a></li>
 			</ul>
+            
+            <!--Div for rendering CPU usage-->
+            <div id="cpu_usage" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
                 
-            <p><b>Note:</b> Resources with a * are donated resources</p>
-            <p><b>Note:</b> Resources with a ** are AWS resources</p>
+            <p><b>Note:</b> Resources with a * are donated resources, and resources with a ** are AWS resources</p>
+            <p><b>Note:</b> Click on a server's radio button to see it's CPU usage</p>
                 
             <!--Beginning of Test Server Table-->    
 			<div class="row-fluid sortable">		
@@ -274,8 +281,7 @@
 			</div><!--/row-->
             
             
-            <!--Div for rendering CPU usage-->
-            <div id="cpu_usage" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+            
             
             </div><!--/.fluid-container-->
 	       <!-- end: Content -->
@@ -305,14 +311,6 @@
 	</div>
 	<div class="clearfix"></div>
 	
-	<footer>
-
-		<p>
-			<span style="text-align:left;float:left">&copy; 2013 <a href="http://themifycloud.com/downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">JANUX Responsive Dashboard</a></span>
-			
-		</p>
-
-	</footer>
 	
 	<!-- start: JavaScript-->
     <!--<script src="js/jquery-1.9.1.min.js"></script>-->
@@ -391,12 +389,17 @@
                 marginRight: 10,
                 events: {
                     load: function () {
-
                         // set up the updating of the chart each second
                         var series = this.series[0];
                         setInterval(function () {
-                            var x = (new Date()).getTime(), // current time
-                                y = Math.abs(Math.random()) * 100;
+                            if(globalStatus=="Active"){
+                                var x = (new Date()).getTime(), // current time
+                                    y = Math.abs(Math.random()) * 100;
+                            }
+                            else{
+                                var x = (new Date()).getTime(), // current time
+                                    y = 0;
+                            }
                             series.addPoint([x, y], true, true);
                         }, 1000);
                     }
@@ -421,7 +424,7 @@
             },
             tooltip: {
                 formatter: function () {
-                    return '<b>' + this.series.name + '</b><br/>' +
+                    return '<b>' + this.series.name + ' ('+globalServerName+')'+ '</b><br/>' +
                         Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
                         Highcharts.numberFormat(this.y, 2);
                 }
@@ -521,6 +524,8 @@
     
     <!--Script for Populating Table From Local Storage-->
     <script>
+        var globalStatus = "Inactive"; //Define global status
+        var globalServerName = "None";
         $(document).ready(populate);
         function populate(){
             $("#tableBody").empty();
@@ -537,6 +542,7 @@
                                 "<td class='center'>"+
 									"<a class='btn btn-info' onclick = 'launchServer(this)' href='#'><i class='halflings-icon off'></i>"+
                                     "</a><a class='btn btn-danger' href='#'><i class='halflings-icon white trash'></i></a>"+
+                                    "<input type='radio' name='cpu' value='1' style='margin-left:7px' onclick='showUsage(this)'"+
 								"</td></tr>";
                     $("#tableBody").append(tableRow);
                 }
@@ -578,6 +584,14 @@
             localStorage.setItem("servers", JSON.stringify(storedServers));
             populate();
             alert(serverName.innerHTML + " is now " + status);
+        }
+        
+        function showUsage(radio){
+            //Get Status of Corresponding Server
+            var serverName = radio.parentNode.parentNode.firstChild;
+            var status = serverName.nextSibling.nextSibling.nextSibling.nextSibling.innerHTML;
+            globalStatus = status;
+            globalServerName = serverName.innerHTML;
         }
     </script>
     <!-- end: JavaScript-->
