@@ -158,15 +158,6 @@
 	</div>
 	<div class="clearfix"></div>
 	
-	<footer>
-
-		<p>
-			<span style="text-align:left;float:left">&copy; 2013 <a href="http://themifycloud.com/downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">JANUX Responsive Dashboard</a></span>
-			
-		</p>
-
-	</footer>
-	
 	<!-- start: JavaScript-->
     <!--<script src="js/jquery-1.9.1.min.js"></script>-->
     <script src="js/jquery-migrate-1.0.0.min.js"></script>
@@ -319,7 +310,7 @@
         var unavailableDevices = 0;
         var rServerIP1;
         
-        $(document).ready(sendAJAXReq);
+        /*$(document).ready(sendAJAXReq);
         
         function sendAJAXReq()
         {
@@ -337,7 +328,7 @@
                       $('.sysMsg').html(output);
                     }
             });
-        }
+        }*/
         
         function initialize(){
             
@@ -585,8 +576,8 @@
                             'Hub Name': 'New Hub',
                             'IP Address': '10.0.0.32',
                             'Max Devices': 5,
-                            'Availability': 'Available',
-                            'Assigned Server': 'None'
+                            'Availability': 'Unavailable',
+                            'Assigned Server': storedServers.serverList[3]["Server Name"]
                         },
                         {
                             'ID': 3,
@@ -727,6 +718,14 @@
                 storedDevices = devices;
             }//End of Device Initialization
             
+            //Get Number of Available and Unavialable Devices for Google Charts
+            for(i=0; i<storedDevices.deviceList.length;i++){
+                if(storedDevices.deviceList[i]["Status"] == "Not Running")
+                    availableDevices++;
+                else
+                    unavailableDevices++;
+            }
+            
           //Get Stored registation invoices List
             var storedRegistrationInvoices = JSON.parse(localStorage.getItem("registrationInvoices"));
 
@@ -765,15 +764,6 @@
                 localStorage.setItem('registrationInvoices', JSON.stringify(registrationInvoices));
                 storedRegistrationInvoices = registrationInvoices;
             }//End of resource registered invoice Initialization       
-                 
-              
-            //Get Number of Available and Unavialable Devices for Google Charts
-            for(i=0; i<storedDevices.deviceList.length;i++){
-                if(storedDevices.deviceList[i]["Status"] == "Not Running")
-                    availableDevices++;
-                else
-                    unavailableDevices++;
-            }
     }
     </script>
     
@@ -794,7 +784,8 @@
         var options = {
           title: 'Server Availability',
           colors: ["green", "gray"],
-            pieHole: 0.2
+            pieHole: 0.2,
+            fontSize: 14
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -810,7 +801,8 @@
         var options = {
           title: 'Hub Availability',
             colors: ["green", "gray"],
-            pieHole: 0.2
+            pieHole: 0.2,
+            fontSize: 14
         };
 
         var chart1 = new google.visualization.PieChart(document.getElementById('piechart1'));
@@ -826,7 +818,8 @@
         var options = {
           title: 'Emulator Availability',
             colors: ["green", "gray"],
-            pieHole: 0.2
+            pieHole: 0.2,
+            fontSize: 14
         };
 
         var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
@@ -842,7 +835,8 @@
         var options = {
           title: 'Physical Device Availability',
             colors: ["green", "gray"],
-            pieHole: 0.2
+            pieHole: 0.2,
+            fontSize: 14
         };
 
         var chart3 = new google.visualization.PieChart(document.getElementById('piechart3'));

@@ -38,7 +38,7 @@
 	<!-- end: Favicon -->
 
     <style>
-        #graph{display: inline; float: left; padding-left: -10px;}
+        #graph{display: block; float: left; padding-left: -15px; width: 100%}
         #resources{margin-top: 70px; font-size: 15px;}
         .node image{
             fill: #fff;
@@ -136,24 +136,257 @@
 				</li>
 				<li><a href="index2.html">Run Time Graph</a></li>
 			</ul>
+            <span style="margin-right:10px"><b>Feel free to donate your resources here: </b></span>
+            <button id = "serverButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#serverModal">Server Donation</button>
+            <button id = "hubButton" type="button" class="btn btn-success" data-toggle="modal" data-target="#hubModal">Hub Donation</button>
+            <button id = "deviceButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#deviceModal">Device Donation</button>
             
-            <div id="resources">
-            <span id="popup1" style="display: inline float:left">No of resources:</span>    
-            <span id="popup" style="display: inline width: 10px; height: 20px; border: 1px solid blue;"></span>
-            </div>
-            <div id="graph">
-            </div>
+                
+            <br/>
+            <br/>
+            <!--<span id="popup1" style="display: inline float:left">Number of resources:</span>    
+            <span id="popup" style="display: inline width: 10px; height: 20px; border: 1px solid blue;"></span>-->
+    
+            <div id="graph" style="border: 0px solid black"></div>
+            <br/>
+            <br/>
+            <br/>
             
+            <!-- Server Modal -->
+                  <div class="modal hide" id="serverModal" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Donate a Server</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" id="sForm">
+                            <div class="form-group">
+                                <label for="sName">Server Name:</label>
+                                <input type="text" class="form-control" id="sName" placeholder="Enter Server Name">
+                            </div>
+                            <div class="form-group">
+                              <label for="ip">IP Address/URL:</label>
+                              <input type="text" class="form-control" id="ip" placeholder="Enter IP Address/URL">
+                            </div>
+                            <div class="form-group">
+                              <label for="iName">Image Name:</label>
+                              <input type="text" class="form-control" id="iName" placeholder="Enter Image Name">
+                            </div>
+                            <div class="form-group">
+                              <label for="location">Location:</label>
+                              <input type="text" class="form-control" id="location" placeholder="Enter Location">
+                            </div>
+                            <div class="form-group">
+                              <label for="CPUs">No. of CPUs:</label>
+                              <input type="text" class="form-control" id="CPUs" placeholder="Enter no. of CPUs">
+                            </div>
+                            <div class="form-group">
+                              <label for="RAM">RAM:</label>
+                              <input type="text" class="form-control" id="RAM" placeholder="Enter RAM">
+                            </div>
+                            <button type="submit" class="btn btn-default" onclick="addServer()">Submit</button>
+                          </form>  
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                
+                <!-- Hub Modal -->
+                  <div class="modal hide" id="hubModal" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Donate a Hub</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form">
+                            <div class="form-group">
+                                <label for="hID">ID:</label>
+                                <input type="text" class="form-control" id="hID" placeholder="Enter Hub ID">
+                            </div>
+                            <div class="form-group">
+                                <label for="hName">Hub Name:</label>
+                                <input type="text" class="form-control" id="hName" placeholder="Enter Hub Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="hIP">Hub IP Address:</label>
+                                <input type="text" class="form-control" id="hIP" placeholder="Enter Hub IP Address">
+                            </div>
+                            <div class="form-group">
+                                <label for="hDevices">Max no. of Devices:</label>
+                                <input type="text" class="form-control" id="hDevices" placeholder="Enter Max no. of Devices">
+                            </div>
+                            <button type="submit" class="btn btn-default" onclick="addHub()">Submit</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                
+                <!-- Device Modal -->
+                  <div class="modal hide" id="deviceModal" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Donate a Device</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="from">
+                            <div class="form-group">
+                                <label for="dName">Device Name:</label>
+                                <input type="text" class="form-control" id="dName" placeholder="Enter Device Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="dOS">OS:</label>
+                                <select class="form-control" id="dOS">
+                                    <option>Android</option>
+                                    <option>iOS</option>
+                                    <option>Windows Phone</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dVersion">OS Version:</label>
+                                <input type="text" class="form-control" id="dVersion" placeholder="Enter OS Version">
+                            </div>
+                            <div class="form-group">
+                                <label for="dRAM">RAM:</label>
+                                <input type="text" class="form-control" id="dRAM" placeholder="Enter Device RAM">
+                            </div>
+                            <div class="form-group">
+                                <label for="dType">Device Type:</label>
+                                <select class="form-control" id="dType">
+                                    <option>Virtual</option>
+                                    <option>Real</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-default" onclick="addDevice()">Submit</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
 			
 		</div><!--/fluid-row-->
-		
+    </div>
+</div>
 	
 	
 	
 	
 	<!-- start: JavaScript-->
-    <!--<script src="js/jquery-1.9.1.min.js"></script>-->
+    <!-- load the d3.js library --> 
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/jquery-migrate-1.0.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        //Function to add Server
+        function addServer(){
+            var storedServers = JSON.parse(localStorage.getItem("servers"));
+            var serverName = $("#sName").val();
+            var ipAddress = $("#ip").val();
+            var imageName = $("#iName").val();
+            var location = $("#location").val();
+            var nCPUs = $("#CPUs").val();
+            var ram = $("#RAM").val();
+            
+            var server = {
+                'Server Name': "*"+serverName,
+                'IP Address': ipAddress,
+                'Image Name': imageName,
+                'Location': location,
+                'Status': 'Inactive',
+                'Date Created': new Date(),
+                'Availability': 'Unavailable',
+                'no. of CPUs': nCPUs,
+                'CPUs in use': 0,
+                'RAM': ram        
+            };
+            
+            storedServers.serverList.push(server);
+            localStorage.setItem('servers', JSON.stringify(storedServers));
+            alert("Thank you. Your Server has been Added!");
+        }
+        //Function to add Hub
+        function addHub(){
+            var storedHubs = JSON.parse(localStorage.getItem("hubs"));
+            var hID = $("#hID").val();
+            var hName = $("#hName").val();
+            var hIP = $("#hIP").val();
+            var maxDevices = $("#hDevices").val();
+            
+            var hub = {
+                'ID': hID,
+                'Hub Name': "*"+hName,
+                'IP Address': hIP,
+                'Max Devices': maxDevices,
+                'Availability': 'Available',
+                'Assigned Server': 'None'
+            };
+            
+            storedHubs.hubList.push(hub);
+            localStorage.setItem('hubs', JSON.stringify(storedHubs));
+            alert("Thank you. Your Hub has Been Added!");
+        }
+        //Function to add Device
+        function addDevice(){
+            var storedEmulators = JSON.parse(localStorage.getItem("emulators"));
+            var storedDevices = JSON.parse(localStorage.getItem("devices"));
+            
+            var dName = $("#dName").val();
+            var dOS = $("#dOS").val();
+            var version = $("#dVersion").val();
+            var ram = $("#dRAM").val();
+            var type = $("#dType").val();
+        
+            if(type == "Virtual"){
+                emulator = {
+                    'Emulator Name': "*"+dName,
+                    'OS':dOS,
+                    'Version': version,
+                    'RAM': ram,
+                    'Status':'Not Running'
+                }
+                storedEmulators.emulatorList.push(emulator);
+                localStorage.setItem('emulators', JSON.stringify(storedEmulators));
+            }
+            else{
+                device = {
+                    'Device Name': "*"+dName,
+                    'OS':dOS,
+                    'Version': version,
+                    'RAM': ram,
+                    'Status':'Not Running'
+                }
+                storedDevices.deviceList.push(device);
+                localStorage.setItem('devices', JSON.stringify(storedDevices));
+            }
+        }
+    </script>
+    
+    <!--<script src="js/jquery-migrate-1.0.0.min.js"></script>
 	
 		<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
 	
@@ -161,7 +394,7 @@
 	
 		<script src="js/modernizr.js"></script>
 	
-		<script src="js/bootstrap.min.js"></script>
+		
 	
 		<script src="js/jquery.cookie.js"></script>
 	
@@ -170,8 +403,8 @@
 		<script src='js/jquery.dataTables.min.js'></script>
 
 		<script src="js/excanvas.js"></script>
-	<!--<script src="js/jquery.flot.js"></script>-->
-	<!--<script src="js/jquery.flot.pie.js"></script>-->
+	<!--<script src="js/jquery.flot.js"></script>
+	<!--<script src="js/jquery.flot.pie.js"></script>
 	<script src="js/jquery.flot.stack.js"></script>
 	<script src="js/jquery.flot.resize.min.js"></script>
 	
@@ -205,7 +438,7 @@
 	
 		<script src="js/retina.js"></script>
 
-		<script src="js/custom.js"></script>
+		<script src="js/custom.js"></script>-->
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     
@@ -247,26 +480,36 @@
     
     //Function to convert server to d3 node format
     function convertServerToD3(server){
+        var color;
+        if(server["Availability"]=="Available")
+            color = "green";
+        else
+            color = "red"
         var serverNode = {
             "name": server["Server Name"],
             "parent": "level 2:A",
             "value": 0,
             "type": "steelblue",
             "icon": "server.png",
-            "level": "orange"
+            "level": color
         }
         return serverNode;
     }
     
     //Function to convert hub to d3 node format
     function convertHubToD3(hub){
+        var color;
+        if(hub["Assigned Server"]=="None")
+            color = "green";
+        else
+            color = "red";
         var hubNode = {
             "name": hub["Hub Name"],
             "parent": "Level 2: A",
             "value": 0,
             "type": "steelblue",
             "icon": "hub.png",
-            "level": "red",
+            "level": color,
             "children": [
                 {
                     "name": "iOS",
@@ -274,7 +517,7 @@
                     "value": 0,
                     "type": "steelblue",
                     "icon": "ios.png",
-                    "level": "red",
+                    "level": "orange",
                     "children": [
                         {
                             "name": "Virtual Device",
@@ -300,7 +543,7 @@
                     "value": 0,
                     "type": "steelblue",
                     "icon": "android.png",
-                    "level": "red",
+                    "level": "orange",
                     "children": [
                         {
                             "name": "Virtual Device",
@@ -326,7 +569,7 @@
                     "value": 0,
                     "type": "steelblue",
                     "icon": "windows.png",
-                    "level": "red",
+                    "level": "orange",
                     "children": [
                         {
                             "name": "Virtual Device",
@@ -399,10 +642,13 @@
                 
                 var androidEmu = 0;
                 var androidDev = 0;
+                var totalAndroid = 0;
                 var iOSEmu = 0;
                 var iOSDev = 0;
+                var totaliOS = 0;
                 var winEmu = 0;
                 var winDev = 0;
+                var totalWindows = 0;
                 var devEmuNumbers = {
                     "androidEmu": androidEmu,
                     "androidDev": androidDev,
@@ -434,12 +680,26 @@
                             devEmuNumbers["winDev"]++;
                     } 
                 }
+                //For iOS, Device and Emulator Numbers
                 hubsByServers[i][j]["children"][0]["children"][0]["value"] = devEmuNumbers["iOSEmu"];
                 hubsByServers[i][j]["children"][0]["children"][1]["value"] = devEmuNumbers["iOSDev"];
+                hubsByServers[i][j]["children"][0]["value"] = devEmuNumbers["iOSEmu"]+devEmuNumbers["iOSDev"];
+                hubsByServers[i][j]["children"][0]["name"] = hubsByServers[i][j]["children"][0]["name"]+" ("+
+                    hubsByServers[i][j]["children"][0]["value"]+")";
+                
+                //For android, Device and Emulator Numbers
                 hubsByServers[i][j]["children"][1]["children"][0]["value"] = devEmuNumbers["androidEmu"];
                 hubsByServers[i][j]["children"][1]["children"][1]["value"] = devEmuNumbers["androidDev"];
+                hubsByServers[i][j]["children"][1]["value"] = devEmuNumbers["androidEmu"]+devEmuNumbers["androidDev"];
+                hubsByServers[i][j]["children"][1]["name"] = hubsByServers[i][j]["children"][1]["name"]+" ("+
+                    hubsByServers[i][j]["children"][1]["value"]+")";
+                
+                //For windows, Device and Emulator Numbers
                 hubsByServers[i][j]["children"][2]["children"][0]["value"] = devEmuNumbers["winEmu"];
                 hubsByServers[i][j]["children"][2]["children"][1]["value"] = devEmuNumbers["winDev"];
+                hubsByServers[i][j]["children"][2]["value"] = devEmuNumbers["winEmu"]+devEmuNumbers["winDev"];
+                 hubsByServers[i][j]["children"][2]["name"] = hubsByServers[i][j]["children"][2]["name"]+" ("+
+                    hubsByServers[i][j]["children"][2]["value"]+")";
             }
         }
         
@@ -450,6 +710,7 @@
                     if(k == serversByLocation[i][j]["name"]){
                         serversByLocation[i][j]["children"] = hubsByServers[k];
                         serversByLocation[i][j]["value"] = serversByLocation[i][j]["children"].length;
+                        serversByLocation[i][j]["name"] = serversByLocation[i][j]["name"]+" ("+serversByLocation[i][j]["value"]+")";
                     }
                 }
             }
@@ -461,15 +722,14 @@
                 if(convertedLocations[i]["name"] == j){
                     convertedLocations[i]["children"] = serversByLocation[j];
                     convertedLocations[i]["value"] = convertedLocations[i]["children"].length;
+                    convertedLocations[i]["name"] = convertedLocations[i]["name"]+" ("+convertedLocations[i]["value"]+")";
                 }
             }
         }
     }
     
 </script>
-<!-- load the d3.js library --> 
-<script src="http://d3js.org/d3.v3.min.js"></script>
-  
+
 <script>
     
 var treeData = [
