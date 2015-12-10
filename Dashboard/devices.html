@@ -258,9 +258,65 @@
 							<li><a href="#">4</a></li>
 							<li><a href="#">Next</a></li>
 						  </ul>
-						</div>     
-					</div>
+						</div>
+                    </div>
 				</div><!--/span-->
+                
+                <!-- Emulator Edit Modal -->
+                  <div class="modal fade" id="emuEdit" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Edit This Emulator</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" id="sForm">
+                            <div class="form-group">
+                                <label for="e_hName">Assign to Hub:</label>
+                                <select class="form-control" id="e_hName">
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-default" onclick="saveEmu()">Submit</button>
+                          </form>  
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                
+                <!-- Device Edit Modal -->
+                  <div class="modal fade" id="devEdit" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Edit This Device</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" id="sForm">
+                            <div class="form-group">
+                                <label for="d_hName">Assign to Hub:</label>
+                                <select class="form-control" id="d_hName">
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-default" onclick="saveDev()">Submit</button>
+                          </form>  
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
             </div><!--/.fluid-container-->
 	       <!-- end: Content -->
 		</div><!--/#content.span10-->
@@ -290,16 +346,17 @@
 	<div class="clearfix"></div>
 	
 	<!-- start: JavaScript-->
-    <!--<script src="js/jquery-1.9.1.min.js"></script>-->
+   <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/jquery-migrate-1.0.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 	
-		<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
+		<!--<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
 	
 		<script src="js/jquery.ui.touch-punch.js"></script>
 	
 		<script src="js/modernizr.js"></script>
 	
-		<script src="js/bootstrap.min.js"></script>
+		
 	
 		<script src="js/jquery.cookie.js"></script>
 	
@@ -308,8 +365,8 @@
 		<script src='js/jquery.dataTables.min.js'></script>
 
 		<script src="js/excanvas.js"></script>
-	<!--<script src="js/jquery.flot.js"></script>-->
-	<!--<script src="js/jquery.flot.pie.js"></script>-->
+	<!--<script src="js/jquery.flot.js"></script>
+	<!--<script src="js/jquery.flot.pie.js"></script>
 	<script src="js/jquery.flot.stack.js"></script>
 	<script src="js/jquery.flot.resize.min.js"></script>
 	
@@ -343,7 +400,7 @@
 	
 		<script src="js/retina.js"></script>
 
-		<script src="js/custom.js"></script>
+		<script src="js/custom.js"></script>-->
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     
@@ -496,19 +553,25 @@
             
     <!--Script for Populating Tables From Local Storage-->
     <script>
+        var editedEmu;
+        var editedDev;
+        var storedEmulators;
+        var storedDevices;
+        var emulatorArray;
+        var deviceArray;
         $(document).ready(populate);
         function populate(){
             $("#emulatorTableBody").empty();
             $("#deviceTableBody").empty();
-            var storedEmulators = JSON.parse(localStorage.getItem("emulators"));
+            storedEmulators = JSON.parse(localStorage.getItem("emulators"));
             if(storedEmulators){
-                var emulatorArray = storedEmulators.emulatorList;
+                emulatorArray = storedEmulators.emulatorList;
                 for(i=0; i<emulatorArray.length; i++){
                     var tableRow = "<tr><td>"+emulatorArray[i]["Emulator Name"]+"</td><td>"+emulatorArray[i]["OS"]+"</td>"+
                                     "<td>"+emulatorArray[i]["Version"]+"</td><td>"+emulatorArray[i]["RAM"]+"</td>"+
                                     "<td>"+emulatorArray[i]["Status"]+"</td>"+
                                 "<td class='center'>"+
-									"<a class='btn btn-danger' href='#'><i class='halflings-icon white trash'></i></a>"+
+									"<a class='btn btn-info' onclick='setEditedEmu(this)' data-toggle='modal' data-target='#emuEdit'><i"+                                           " class='halflings-icon white edit'></i></a>"+
 								"</td></tr>";
                     $("#emulatorTableBody").append(tableRow);
                 }
@@ -526,15 +589,24 @@
                 }
             }
             
-            var storedDevices = JSON.parse(localStorage.getItem("devices"));
+            $("#e_hName").empty();
+            var storedHubs = JSON.parse(localStorage.getItem("hubs"));
+            var hubArray = storedHubs.hubList;
+            for(i = 0; i<hubArray.length;i++){
+                var option = "<option>"+hubArray[i]["Hub Name"]+"</option>"
+                $("#e_hName").append(option);
+            }
+            $("#e_hName").append("<option>None</option>");
+            
+            storedDevices = JSON.parse(localStorage.getItem("devices"));
             if(storedDevices){
-                var deviceArray = storedDevices.deviceList;
+                deviceArray = storedDevices.deviceList;
                 for(i=0; i<deviceArray.length; i++){
                     var tableRow = "<tr><td>"+deviceArray[i]["Device Name"]+"</td><td>"+deviceArray[i]["OS"]+"</td>"+
                                     "<td>"+deviceArray[i]["Version"]+"</td><td>"+deviceArray[i]["RAM"]+"</td>"+
                                     "<td>"+deviceArray[i]["Status"]+"</td>"+
                                 "<td class='center'>"+
-									"<a class='btn btn-danger' href='#'><i class='halflings-icon white trash'></i></a>"+
+									"<a class='btn btn-info' onclick='setEditedDev(this)' data-toggle='modal' data-target='#devEdit'><i"+                                          " class='halflings-icon white edit'></i></a>"+
 								"</td></tr>";
                     $("#deviceTableBody").append(tableRow);
                 }
@@ -550,6 +622,49 @@
                     tableRow = tableRow.nextSibling;
                 }
             }
+            
+            $("#d_hName").empty();
+            /*var storedHubs = JSON.parse(localStorage.getItem("hubs"));
+            var hubArray = storedHubs.hubList;*/
+            for(i = 0; i<hubArray.length;i++){
+                var option = "<option>"+hubArray[i]["Hub Name"]+"</option>"
+                $("#d_hName").append(option);
+            }
+            $("#d_hName").append("<option>None</option>");
+        }
+        
+        function setEditedEmu(bt){
+            var emuName = bt.parentNode.parentNode.firstChild.innerHTML;
+            for(i=0;i<emulatorArray.length;i++){
+                if(emuName==emulatorArray[i]["Emulator Name"]){
+                   editedEmu = i;
+                }
+            }
+        }
+        
+        function setEditedDev(bt){
+            var devName = bt.parentNode.parentNode.firstChild.innerHTML;
+            for(i=0;i<deviceArray.length;i++){
+                if(devName==deviceArray[i]["Device Name"]){
+                   editedDev = i;
+                }
+            }
+        }
+        
+        function saveEmu(){
+            
+            emulatorArray[editedEmu]["Assigned Hub"]=$("#e_hName").val();
+            
+            localStorage.setItem("emulators", JSON.stringify(storedEmulators));
+            alert(emulatorArray[editedEmu]["Emulator Name"]+" is now attached to: "+emulatorArray[editedEmu]["Assigned Hub"]);
+        }
+        
+        function saveDev(){
+            
+            deviceArray[editedDev]["Assigned Hub"]=$("#d_hName").val();
+            
+            localStorage.setItem("devices", JSON.stringify(storedDevices));
+            alert(deviceArray[editedDev]["Device Name"]+" is now attached to: "+deviceArray[editedDev]["Assigned Hub"]);
         }
     </script>
     <!-- end: JavaScript-->

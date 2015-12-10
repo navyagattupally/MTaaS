@@ -525,6 +525,7 @@
                     tableRow = tableRow.nextSibling;
                 }
             }
+            //Dynamically style Server List for dropdown
             $("#sName").empty();
             var storedServers = JSON.parse(localStorage.getItem("servers"));
             var serverArray = storedServers.serverList;
