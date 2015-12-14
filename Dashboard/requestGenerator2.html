@@ -351,7 +351,7 @@ function sendAJAXReqEmail(email)
     $.ajax({
             type: "GET",
             data: email,
-            url: "http://54.213.242.182:3000/sendEmail/"+email, 
+            url: "http://54.213.242.223:3000/sendEmail/"+email, 
             success: function(output, status, xhr) {
               alert(output);              
             },
@@ -445,7 +445,7 @@ function sendRequests()
   $.ajax({
             type: "GET",
             data: email,
-            url: "http://54.213.242.182:3000/sendEmail/"+email, 
+            url: "http://54.213.242.223:3000/sendEmail/"+email, 
             success: function(output, status, xhr) {
               alert(output);              
             },
@@ -551,7 +551,7 @@ function updateServerbyRoundRobin(){
      }     
      
 }
-
+//for demo
 function updateDevicebyRoundRobin(){    
      var storedDevices = JSON.parse(localStorage.getItem("devices"));
      for(i=0; i<storedDevices.deviceList.length;i++){
