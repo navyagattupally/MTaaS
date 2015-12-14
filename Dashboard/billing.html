@@ -204,7 +204,7 @@ label.error {
                                                             <th>Username</th>
                                                             <th>Resource Type</th>
 															<th>Number of Request</th>
-                                                            <th>Duration used (In Hours)</th>                                                                                                           <th>RAM</th>
+                                                            <th>Duration used (In Hours)</th>                                                                                                     
                                                             
                                                         </tr>
                                                     </thead>
@@ -214,7 +214,7 @@ label.error {
                                                           <td><input type="text" size=10px id ="res" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
                                                             <td><input type="text" size=10px id ="noreq" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
 															 <td><input type="text" size=10 id ="dur" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
-                                                            <td><input type="text" size=10 id ="ram" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>
+                                                           <!--   <td><input type="text" size=10 id ="ram" style="border: 0px;background-color: #FFFFFF	;" readonly=true value=""></p></td>-->
                                                             
                                                             </td>
                                                             
@@ -296,9 +296,9 @@ function bill(){
  
  document.getElementById("username").value= lastInvoice["User Name"];
  document.getElementById("res").value= lastInvoice["Resource_type_registered"];
- document.getElementById("noreq").value = 1;
+ document.getElementById("noreq").value = lastInvoice["Count"];
  document.getElementById("dur").value = lastInvoice["DurationInHours"];
- document.getElementById("ram").value = 512000;
+ //document.getElementById("ram").value = 512000;
  
  
   
